@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af48d4e7db1955a42adc8314ba25fcd9, type: 3}
+  m_Name: TestAbility2
+  m_EditorClassIdentifier: Assembly-CSharp::TestAbility2
+  upgraded: 0
+  onCooldown: 0
+  abilityIcon: {fileID: 21300000, guid: 6874553c7941c414f80d1bca3b4e5118, type: 3}
+  cooldown: 0
+  cooldownTime: 0
