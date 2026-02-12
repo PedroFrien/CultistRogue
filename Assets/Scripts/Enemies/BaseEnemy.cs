@@ -18,6 +18,8 @@ public class BaseEnemy : BaseCharacter
     public bool Investigating;
     public bool Chasing;
 
+    public LayerMask playerDetect;
+
 
 
     [Header("Patrolling")]
@@ -35,7 +37,7 @@ public class BaseEnemy : BaseCharacter
     public bool move;
 
     private Coroutine movementCoroutine;
-    private Vector3 lastSeenPos;
+    public Vector3 lastSeenPos;
     private GameObject player;
 
     private void Start()
@@ -75,7 +77,7 @@ public class BaseEnemy : BaseCharacter
             }
             else
             {
-                if (Vector3.Distance(transform.position, lastSeenPos) <= 1f)
+                if (Vector3.Distance(transform.position, lastSeenPos) <= 2f)
                 {
                     StartCoroutine(ResumePatrol());
                 }
@@ -90,6 +92,8 @@ public class BaseEnemy : BaseCharacter
         Debug.Log("Starting Chase");
 
         StopAllCoroutines();
+
+        Investigating = false;
 
         Chasing = true;
 
@@ -115,12 +119,15 @@ public class BaseEnemy : BaseCharacter
             currentPatrolPoint = patrolPoints[patrolPointIndex];
         }
 
+        Investigating = false;
+
         movementCoroutine = StartCoroutine(MoveToPos(currentPatrolPoint));
     }
 
     public void Investigate(Vector3 pos)
     {
-        StopCoroutine(movementCoroutine);
+        if (movementCoroutine != null) StopCoroutine(movementCoroutine);
+     
 
         movementCoroutine = StartCoroutine(MoveToPos(pos));
 
@@ -131,36 +138,55 @@ public class BaseEnemy : BaseCharacter
 
     public IEnumerator ResumePatrol()
     {
-        yield return new WaitForSeconds(1);
+        Chasing = false;
 
+        yield return new WaitForSeconds(1);
+    
         Patrolling = true;
 
-        MoveToPos(currentPatrolPoint);
+        agent.speed = normalSpeed;
+
+        StopCoroutine(movementCoroutine);
+        movementCoroutine = StartCoroutine(MoveToPos(currentPatrolPoint));
     }
 
     public bool PlayerInLOS()
     {
         RaycastHit hit;
         Vector3 dir = (player.transform.position - transform.position).normalized;
-        if (Physics.Raycast(transform.position, dir ,out hit, sightRange))
+
+        // Draw debug line in Scene view
+        Debug.DrawRay(transform.position, dir * sightRange, Color.red, 0.0f, false);
+
+        if (Physics.Raycast(transform.position, dir, out hit, sightRange, playerDetect))
         {
+            Debug.Log("Hit SOMETHING");
             if (hit.collider.CompareTag("Player"))
             {
+                // Change line color to green when player is detected
+                Debug.DrawRay(transform.position, dir * hit.distance, Color.green, 0.0f, false);
+                Debug.Log("Player in Sight");
                 return true;
             }
             else
             {
+                // Draw yellow line when hitting something else
+                Debug.DrawRay(transform.position, dir * hit.distance, Color.yellow, 0.0f, false);
+                Debug.Log("Player is NOT in Sight");
                 return false;
             }
         }
         else
         {
+            // Draw red line when nothing is hit within sightRange
+            Debug.DrawRay(transform.position, dir * sightRange, Color.red, 0.0f, false);
+            Debug.Log("Player is NOT in Sight");
             return false;
         }
     }
 
 
-#region Patrol Gizmos
+    #region Patrol Gizmos
     private void OnDrawGizmos()
     {
         if (patrolPoints == null || patrolPoints.Length == 0)

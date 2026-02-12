@@ -239,8 +239,6 @@ public class FPController : MonoBehaviour
 
     public void TryDash()
     {
-        Debug.Log("Trying dash");
-
         if (IsGrounded == false && MovementEnabled == true && CanDash)
         {
             float storedVelocity = DashBase;
@@ -252,8 +250,16 @@ public class FPController : MonoBehaviour
 
             CanDash = false;
         }
-
     }
+
+    public void AddVelocity(float force, Vector3 dir)
+    {
+        float storedVelocity = DashBase;
+     
+        CurrentVelocity = CurrentVelocity + (dir.normalized * storedVelocity);
+    }
+
+    
 
     public void Pause()
     {
