@@ -2227,6 +2227,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1690084490}
     m_Modifications:
+    - target: {fileID: 1784772290294256946, guid: 335e8a4fa3d3ced41a42b8acfa7d38e9, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 04c8edb092e19df44a106d65d14fcb25, type: 3}
     - target: {fileID: 1958263085651547813, guid: 335e8a4fa3d3ced41a42b8acfa7d38e9, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -8311,6 +8315,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1690084490}
     m_Modifications:
+    - target: {fileID: 1784772290294256946, guid: 335e8a4fa3d3ced41a42b8acfa7d38e9, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 04c8edb092e19df44a106d65d14fcb25, type: 3}
     - target: {fileID: 1958263085651547813, guid: 335e8a4fa3d3ced41a42b8acfa7d38e9, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -8586,6 +8594,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1500194468}
   m_CullTransparentMesh: 1
+--- !u!114 &1506837202 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1784772290294256946, guid: 335e8a4fa3d3ced41a42b8acfa7d38e9, type: 3}
+  m_PrefabInstance: {fileID: 645248707795136200}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
 --- !u!1 &1519963514
 GameObject:
   m_ObjectHideFlags: 0
@@ -9678,6 +9697,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1690084490}
     m_Modifications:
+    - target: {fileID: 1784772290294256946, guid: 335e8a4fa3d3ced41a42b8acfa7d38e9, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 04c8edb092e19df44a106d65d14fcb25, type: 3}
     - target: {fileID: 1958263085651547813, guid: 335e8a4fa3d3ced41a42b8acfa7d38e9, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -11249,6 +11272,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1690084490}
     m_Modifications:
+    - target: {fileID: 1784772290294256946, guid: 335e8a4fa3d3ced41a42b8acfa7d38e9, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 04c8edb092e19df44a106d65d14fcb25, type: 3}
     - target: {fileID: 1958263085651547813, guid: 335e8a4fa3d3ced41a42b8acfa7d38e9, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -11815,6 +11842,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1690084490}
     m_Modifications:
+    - target: {fileID: 1784772290294256946, guid: 335e8a4fa3d3ced41a42b8acfa7d38e9, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 04c8edb092e19df44a106d65d14fcb25, type: 3}
     - target: {fileID: 1958263085651547813, guid: 335e8a4fa3d3ced41a42b8acfa7d38e9, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -11899,6 +11930,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -14.5
       objectReference: {fileID: 0}
+    - target: {fileID: 4487655347039603004, guid: 335e8a4fa3d3ced41a42b8acfa7d38e9, type: 3}
+      propertyPath: m_TargetGraphic
+      value: 
+      objectReference: {fileID: 1506837202}
     - target: {fileID: 5517002833629381373, guid: 335e8a4fa3d3ced41a42b8acfa7d38e9, type: 3}
       propertyPath: progressBar
       value: 
