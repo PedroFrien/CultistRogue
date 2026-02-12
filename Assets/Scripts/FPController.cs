@@ -3,6 +3,7 @@ using Unity.Cinemachine;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections.Generic;
 
 
 
@@ -10,6 +11,12 @@ using UnityEngine.UI;
 [RequireComponent(typeof(CharacterController))]
 public class FPController : MonoBehaviour
 {
+
+
+
+
+
+
     [Header("Movement Parameters")]
     public float MaxSpeed => SprintInput ? SprintSpeed : WalkSpeed;
 
@@ -117,6 +124,7 @@ public class FPController : MonoBehaviour
     private GameManager gameManager;
 
     [SerializeField] private GameObject abilityWheel;
+    private WeaponManager weaponManager;
 
 
 
@@ -139,7 +147,7 @@ public class FPController : MonoBehaviour
     {
         gameManager = FindFirstObjectByType<GameManager>();
 
-
+        weaponManager = GetComponent<WeaponManager>();
     }
 
     private void Update()
@@ -180,6 +188,12 @@ public class FPController : MonoBehaviour
 
     #region Controller Methods
 
+
+
+    public void Attack()
+    {
+        weaponManager.UseWeapon();
+    }
 
 
     public void OpenWheel()
@@ -325,9 +339,9 @@ public class FPController : MonoBehaviour
         fpCamera.Lens.FieldOfView = Mathf.Lerp(fpCamera.Lens.FieldOfView, targetFOV, CameraFOVSmoothing * Time.deltaTime);
     }
 
-    public void Restart()
+    public void Reload()
     {
-        //GameManager.Instance.Restart();
+        weaponManager.ReloadWeapon();
     }
 
     public void TryInteract()

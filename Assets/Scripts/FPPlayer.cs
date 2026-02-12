@@ -25,6 +25,14 @@ public class FPPlayer : MonoBehaviour
         FPController.SprintInput = value.isPressed;
     }
 
+    void OnAttack(InputValue value)
+    {
+        if (value.isPressed)
+        {
+            FPController.Attack();
+        }
+    }
+
     void OnAbilityWheelPress(InputValue value)
     {
         if (value.isPressed)
@@ -57,11 +65,12 @@ public class FPPlayer : MonoBehaviour
         }
     }
 
-    void OnRestart(InputValue value)
+    void OnReload(InputValue value)
     {
         if (value.isPressed)
         {
-            FPController.Restart();
+            Debug.Log("Trying to Reload");
+            FPController.Reload();
         }
     }
 

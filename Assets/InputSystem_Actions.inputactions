@@ -106,7 +106,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Restart",
+                    "name": "Reload",
                     "type": "Button",
                     "id": "841bf258-5886-40e0-a50c-8656c8d2eca1",
                     "expectedControlType": "",
@@ -548,7 +548,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Restart",
+                    "action": "Reload",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

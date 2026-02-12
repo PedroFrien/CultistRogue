@@ -1,16 +1,22 @@
 using UnityEngine;
 
-public class TestEnemy : MonoBehaviour
+public class TestEnemy : BaseEnemy
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private void Update()
     {
-        
+        StateUpdate();
     }
 
-    // Update is called once per frame
-    void Update()
+
+
+
+    private void OnTriggerEnter(Collider other)
     {
-        
+        Debug.Log("Something triggered");
+        if (other.GetComponent<FPController>() != null)
+        {
+            Debug.Log("Player Triggered");
+            StartChase();
+        }
     }
 }

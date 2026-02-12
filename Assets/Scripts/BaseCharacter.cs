@@ -7,9 +7,19 @@ public abstract class BaseCharacter : MonoBehaviour
 
 
 
-    public abstract void TakeDamage(float damageTaken);
+    public virtual void TakeDamage(float damageTaken)
+    {
+        CurrentHealth -= damageTaken;
+        if (CurrentHealth <= 0)
+        {
+            Die();
+        }
+    }
 
-    public abstract void Die();
+    public virtual void Die()
+    {
+        Destroy(gameObject);
+    }
 
     public virtual void Heal() { }
     
