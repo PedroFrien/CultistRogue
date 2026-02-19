@@ -26,6 +26,8 @@ public abstract class BaseGun : BaseWeapon
 
     public LayerMask hitLayer;
 
+    public bool reloading = false;
+
 
 
     private void Start()
@@ -45,17 +47,20 @@ public abstract class BaseGun : BaseWeapon
     }
     public IEnumerator Reload()
     {
+        if (currentAmmo >= magSize || reserveAmmo <= 0 || reloading)
+        { 
+            yield break;
+        }
+
+        reloading = true;
+
         FindFirstObjectByType<AudioManager>().PlaySound("Reload", transform.position, gameObject);
 
         animator.SetTrigger("Reload");
 
         Debug.Log("Reload");
 
-        if (reserveAmmo <= 0)
-        {
-            Debug.Log("Out of ammo");
-            yield break;
-        }
+        
         
 
         yield return new WaitForSeconds(reloadTime);
@@ -70,7 +75,10 @@ public abstract class BaseGun : BaseWeapon
             currentAmmo = reserveAmmo;
             reserveAmmo = 0;
         }
-        
+
+        reloading = false;
+
+        FindFirstObjectByType<WeaponManager>().GunUpdate();
     }
 
     public Vector3 ScreenCenter()

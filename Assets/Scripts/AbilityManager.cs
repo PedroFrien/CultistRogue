@@ -50,6 +50,8 @@ public class AbilityManager : MonoBehaviour
     {
         if (equippedAbilities.Count > abilityIndex)
         {
+            FindFirstObjectByType<AudioManager>().PlaySound("DropAbility", transform.position, gameObject);
+
             BaseAbility removedAbility = equippedAbilities[abilityIndex];
 
             equippedAbilities.RemoveAt(abilityIndex);

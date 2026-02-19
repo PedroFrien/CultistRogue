@@ -27,6 +27,8 @@ public class WeaponManager : MonoBehaviour
 
 
                 spawnedWeapon.transform.parent = weaponHoldPos;
+                spawnedWeapon.transform.localPosition += spawnedWeapon.offsetPos;
+                spawnedWeapon.transform.localRotation = Quaternion.Euler(spawnedWeapon.rotateOffsetPos);
                 //spawnedWeapon.transform.localPosition = Vector3.zero;
                 //spawnedWeapon.transform.localRotation = Quaternion.identity;
 
@@ -49,6 +51,8 @@ public class WeaponManager : MonoBehaviour
         currentWeapon.gameObject.SetActive(false);
         currentWeapon = heldWeapons[index];
         currentWeapon.gameObject.SetActive(true);
+
+        GunUpdate();
     }
 
     public void UseWeapon()
@@ -61,6 +65,23 @@ public class WeaponManager : MonoBehaviour
         {
             currentWeapon.Use();
         }
+
+        GunUpdate();
+        
+    }
+
+    public void GunUpdate()
+    {
+        BaseGun gun = currentWeapon.GetComponent<BaseGun>();
+        if (gun != null)
+        {
+            ammoCount.gameObject.SetActive(true);
+            ammoCount.text = gun.currentAmmo + " / " + gun.reserveAmmo;
+        }
+        else
+        {
+            ammoCount.gameObject.SetActive(false);
+        }
     }
 
     public void ReloadWeapon()
@@ -71,6 +92,8 @@ public class WeaponManager : MonoBehaviour
         {
             gun.StartCoroutine("Reload");
         }
+
+        GunUpdate();
 
         
     }

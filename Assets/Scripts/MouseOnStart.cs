@@ -6,6 +6,9 @@ public class MouseOnStart : MonoBehaviour
 
     [SerializeField] private bool mouseOnStart = true;
 
+    public bool Win;
+    public bool Lose;
+
     private void Start()
     {
         gameManager = FindFirstObjectByType<GameManager>();
@@ -20,7 +23,14 @@ public class MouseOnStart : MonoBehaviour
             gameManager.SetMouseActive(false);
         }
         
-
+        if (Win)
+        {
+            FindFirstObjectByType<AudioManager>().PlaySound("Win", transform.position, gameObject);
+        }
+        else if (Lose)
+        {
+            FindFirstObjectByType<AudioManager>().PlaySound("Lose", transform.position, gameObject);
+        }
 
     }
 }

@@ -46,15 +46,15 @@ public class AudioManager : MonoBehaviour
 
     void Awake()
     {
-        if (instance == null)
-            instance = this;
-        else
-        {
-            Destroy(gameObject);
-            return;
-        }
+        //if (instance == null)
+        //    instance = this;
+        //else
+        //{
+        //    Destroy(gameObject);
+        //    return;
+        //}
 
-        DontDestroyOnLoad(gameObject);
+        //DontDestroyOnLoad(gameObject);
 
         foreach (Sound s in sounds)
         {
@@ -133,6 +133,17 @@ public class AudioManager : MonoBehaviour
         s.playingObjects.Add(playingObject);
 
         StartCoroutine(ResetPlayingState(s, playingObject));
+    }
+
+    public void PlayGlobalSound(string name)
+    {
+        if (effectsMute) return;
+        Sound s = Array.Find(sounds, sound => sound.name == name);
+
+        s.source.transform.position = transform.position;
+        s.source.pitch = s.speed;
+        s.source.volume = s.volume * effectsVolume; // Apply current effects volume
+        s.source.Play();
     }
 
     public void PlayExclusiveSound(string name, Vector3 position, GameObject playingObject)
