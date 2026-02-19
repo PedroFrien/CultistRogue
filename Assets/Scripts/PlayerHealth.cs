@@ -5,6 +5,8 @@ public class PlayerHealth : BaseCharacter
     private GameManager gameManager;
 
 
+    [SerializeField] private Healthbar healthBar;
+
     private void Start()
     {
         CurrentHealth = MaxHealth;
@@ -13,6 +15,13 @@ public class PlayerHealth : BaseCharacter
     public override void TakeDamage(float damage)
     {
         CurrentHealth -= damage;
+
+        float healthValue = CurrentHealth / MaxHealth;
+
+        healthBar.ChangeValue(healthValue);
+
+        Debug.Log(CurrentHealth);
+
 
         if (CurrentHealth <= 0 )
         {
