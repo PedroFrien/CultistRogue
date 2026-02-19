@@ -11,6 +11,7 @@ public class WinVolume : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        FindFirstObjectByType<AudioManager>().PlaySound("Win", transform.position, gameObject);
         gameManager.LoadScene("WinScreen");
     }
 }

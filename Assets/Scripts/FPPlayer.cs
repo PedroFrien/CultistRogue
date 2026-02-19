@@ -57,12 +57,9 @@ public class FPPlayer : MonoBehaviour
         }
     }
 
-    void OnDash(InputValue value)
+    void OnCrouch(InputValue value)
     {
-        if (value.isPressed)
-        {
-            FPController.TryDash();
-        }
+        FPController.CrouchInput = value.isPressed;
     }
 
     void OnReload(InputValue value)
@@ -88,6 +85,23 @@ public class FPPlayer : MonoBehaviour
         if (value.isPressed)
         {
             FPController.Pause();
+        }
+    }
+
+
+    void OnWeapon1(InputValue value)
+    {
+        if (value.isPressed)
+        {
+            FPController.Weapon1();
+        }
+    }
+
+    void OnWeapon2(InputValue value)
+    {
+        if (value.isPressed)
+        {
+            FPController.Weapon2();
         }
     }
 

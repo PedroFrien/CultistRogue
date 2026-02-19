@@ -18,7 +18,12 @@ public class FPController : MonoBehaviour
 
 
     [Header("Movement Parameters")]
-    public float MaxSpeed => SprintInput ? SprintSpeed : WalkSpeed;
+    public float MaxUprightSpeed => SprintInput ? SprintSpeed : WalkSpeed;
+    public float MaxCrouchSpeed => SprintInput ? CrouchSprintSpeed : CrouchWalkSpeed;
+
+    public float MaxSpeed => CrouchInput ? MaxCrouchSpeed : MaxUprightSpeed;
+
+ 
 
 
 
@@ -26,6 +31,13 @@ public class FPController : MonoBehaviour
 
     [SerializeField] float WalkSpeed = 3.5f;
     [SerializeField] float SprintSpeed = 8f;
+    [SerializeField] float CrouchWalkSpeed = 1.5f;
+    [SerializeField] float CrouchSprintSpeed = 3.5f;
+
+
+
+    [SerializeField] private float crouchHeight = 1f;
+    [SerializeField] private float standingHeight;
 
     public bool MovementEnabled = true;
     public bool CameraEnabled = true;
@@ -101,6 +113,11 @@ public class FPController : MonoBehaviour
     public Vector2 MoveInput;
     public Vector2 LookInput;
     public bool SprintInput;
+    public bool CrouchInput;
+    private Vector3 initialCameraPos;
+
+
+
 
     public bool WheelInput;
 
@@ -127,6 +144,9 @@ public class FPController : MonoBehaviour
     private WeaponManager weaponManager;
 
 
+    
+
+
 
 
 
@@ -148,6 +168,10 @@ public class FPController : MonoBehaviour
         gameManager = FindFirstObjectByType<GameManager>();
 
         weaponManager = GetComponent<WeaponManager>();
+
+        standingHeight = characterController.height;
+
+        initialCameraPos = fpCamera.transform.localPosition;
     }
 
     private void Update()
@@ -176,6 +200,9 @@ public class FPController : MonoBehaviour
             coyoteTimeCounter -= Time.deltaTime;
         }
 
+
+        
+
         
 
        
@@ -203,6 +230,7 @@ public class FPController : MonoBehaviour
         gameManager.SetTimeScale(slowTime);
         CameraEnabled = false;
         LookEnabled = false;
+        gameManager.menuOpen = true;
         
     }
 
@@ -216,7 +244,7 @@ public class FPController : MonoBehaviour
         gameManager.SetTimeScale(1f);
         CameraEnabled = true;
         LookEnabled = true;
-
+        gameManager.menuOpen = false;
 
 
     }
@@ -284,6 +312,16 @@ public class FPController : MonoBehaviour
 
     void MoveUpdate()
     {
+
+        var heightTarget = CrouchInput ? crouchHeight : standingHeight;
+        fpCamera.transform.localPosition = new Vector3(0, heightTarget / 2, 0);
+
+        characterController.height = heightTarget;
+
+
+
+
+
         Vector3 motion = transform.forward * MoveInput.y + transform.right * MoveInput.x;
         motion.y = 0f;
         motion.Normalize();
@@ -358,6 +396,16 @@ public class FPController : MonoBehaviour
 
             selectedInteractable.OnInteract();
         }
+    }
+
+    public void Weapon1()
+    {
+        weaponManager.SwapWeapon(0);
+    }
+
+    public void Weapon2()
+    {
+        weaponManager.SwapWeapon(1);
     }
 
     

@@ -10,6 +10,9 @@ public class TestEnemy : BaseEnemy
 
 
 
+
+
+
     //private void OnTriggerEnter(Collider other)
     //{
     //    Debug.Log("Something triggered");

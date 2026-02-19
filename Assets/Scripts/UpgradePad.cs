@@ -19,7 +19,11 @@ public class UpgradePad : MonoBehaviour
 
     private IEnumerator UpgradeAbility(BaseAbility ability)
     {
+        FindFirstObjectByType<AudioManager>().PlaySound("UpgradeStart", transform.position, gameObject);
+
         yield return new WaitForSeconds(delay);
+
+        FindFirstObjectByType<AudioManager>().PlaySound("Upgrade", transform.position, gameObject);
 
         ability.upgraded = true;
 

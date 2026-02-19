@@ -5,7 +5,7 @@ using Unity.VisualScripting;
 using UnityEngine.Rendering;
 using UnityEditor;
 
-public class BaseEnemy : BaseCharacter
+public abstract class BaseEnemy : BaseCharacter
 {
     public NavMeshAgent agent;
 
@@ -18,7 +18,21 @@ public class BaseEnemy : BaseCharacter
     public bool Investigating;
     public bool Chasing;
 
+    public bool playerInCone;
+    public float uprightRate;
+    public float crouchDetectRate;
+    public float detectRate => playerCon.CrouchInput ? crouchDetectRate : uprightRate;
+    public float timeToDetect;
+    public float detectValue;
+
     public LayerMask playerDetect;
+
+    private Animator animator;
+
+    public Healthbar exclamationPoint;
+    public GameObject questionMark;
+
+    
 
 
 
@@ -39,6 +53,22 @@ public class BaseEnemy : BaseCharacter
     private Coroutine movementCoroutine;
     public Vector3 lastSeenPos;
     private GameObject player;
+    private FPController playerCon;
+
+    public GameObject bulletTrail;
+    public Transform firePoint;
+
+    [Header("Ranged Attributes")]
+    public bool isRanged;
+    public float range;
+    public float bulletDamage;
+    public float shootDelay;
+    public float betweenShotDelay;
+    public bool shooting;
+    private Coroutine shootingCoroutine;
+
+
+
 
     private void Start()
     {
@@ -50,6 +80,10 @@ public class BaseEnemy : BaseCharacter
         patrolPointIndex = 0;
         currentPatrolPoint = patrolPoints[patrolPointIndex];
         movementCoroutine = StartCoroutine(MoveToPos(currentPatrolPoint));
+
+        animator = GetComponent<Animator>();
+
+        playerCon = player.GetComponent<FPController>();
     }
 
 
@@ -67,9 +101,20 @@ public class BaseEnemy : BaseCharacter
         }
 
 
+        if (shooting)
+        {
+            transform.LookAt(player.transform);
+        }
+
         if (Chasing == true)
         {
-            if (PlayerInLOS())
+            if (Vector3.Distance(transform.position, player.transform.position) <= range && !shooting && PlayerInLOS())
+            {                
+                shootingCoroutine = StartCoroutine(Shoot());
+            }
+
+
+            else if (PlayerInLOS() && !shooting)
             {
                 lastSeenPos = player.transform.position;
                 agent.SetDestination(lastSeenPos);
@@ -77,20 +122,50 @@ public class BaseEnemy : BaseCharacter
             }
             else
             {
-                if (Vector3.Distance(transform.position, lastSeenPos) <= 2f)
+                if (Vector3.Distance(transform.position, lastSeenPos) <= 2f && !shooting)
                 {
                     StartCoroutine(ResumePatrol());
                 }
             }
         }
 
+        if (playerInCone)
+        {
+            IncrementPopup(detectRate);
+        }
+        else
+        {
+            IncrementPopup(-detectRate);
+        }
+
+        questionMark.SetActive(Investigating);
+        
+
+    }
+
+    public void IncrementPopup(float value)
+    {
+
+        detectValue += value;
+        if (detectValue > timeToDetect)
+        {
+            StartChase();
+        }
+        detectValue = Mathf.Clamp(detectValue, 0, timeToDetect);
+
+        float barValue = detectValue / timeToDetect;
+        exclamationPoint.ChangeValue(barValue);
+
     }
 
 
     public void StartChase()
     {
-        Debug.Log("Starting Chase");
+        if (Chasing) return;
 
+        FindFirstObjectByType<AudioManager>().PlaySound("Spotted", transform.position, gameObject);
+        Debug.Log("Starting Chase");
+        exclamationPoint.ChangeValue(0);
         StopAllCoroutines();
 
         Investigating = false;
@@ -126,12 +201,21 @@ public class BaseEnemy : BaseCharacter
 
     public void Investigate(Vector3 pos)
     {
-        if (movementCoroutine != null) StopCoroutine(movementCoroutine);
-     
+        NavMeshHit hit;
+        var path = new NavMeshPath();
 
-        movementCoroutine = StartCoroutine(MoveToPos(pos));
+        if (NavMesh.SamplePosition(pos, out hit, 1.0f, NavMesh.AllAreas) && NavMesh.CalculatePath(transform.position, pos, 1, path))
+        {
+            if (movementCoroutine != null) StopCoroutine(movementCoroutine);
 
-        Investigating = true;
+
+            movementCoroutine = StartCoroutine(MoveToPos(pos));
+
+            Investigating = true;
+        }
+
+
+        
     }
 
 
@@ -146,15 +230,15 @@ public class BaseEnemy : BaseCharacter
 
         agent.speed = normalSpeed;
 
-        StopCoroutine(movementCoroutine);
+        if (movementCoroutine != null) StopCoroutine(movementCoroutine);
         movementCoroutine = StartCoroutine(MoveToPos(currentPatrolPoint));
     }
 
     public bool PlayerInLOS()
     {
         RaycastHit hit;
-        Vector3 dir = (player.transform.position - transform.position).normalized;
 
+        Vector3 dir = (player.transform.position - transform.position).normalized;
         // Draw debug line in Scene view
         Debug.DrawRay(transform.position, dir * sightRange, Color.red, 0.0f, false);
 
@@ -166,6 +250,7 @@ public class BaseEnemy : BaseCharacter
                 // Change line color to green when player is detected
                 Debug.DrawRay(transform.position, dir * hit.distance, Color.green, 0.0f, false);
                 Debug.Log("Player in Sight");
+                lastSeenPos = player.transform.position;
                 return true;
             }
             else
@@ -183,6 +268,69 @@ public class BaseEnemy : BaseCharacter
             Debug.Log("Player is NOT in Sight");
             return false;
         }
+    }
+
+    public virtual IEnumerator Shoot()
+    {
+        Debug.Log("Shooting");
+        if (shooting) yield break;
+
+        animator.SetTrigger("Shoot");
+        
+
+        shooting = true;        
+        agent.SetDestination(transform.position);
+
+        yield return new WaitForSeconds(shootDelay);
+
+        FindFirstObjectByType<AudioManager>().PlaySound("Gunshot", transform.position, gameObject);
+
+        Vector3 dir = (player.transform.position - firePoint.position).normalized;
+
+        RaycastHit hit;
+        Ray ray = new Ray(firePoint.position, dir);
+
+        
+        if (Physics.Raycast(ray, out hit, 99, playerDetect))
+        {
+            BaseCharacter character = hit.collider.GetComponent<BaseCharacter>();
+            if (character != null)
+            {
+                character.TakeDamage(bulletDamage);
+            }
+
+            SpawnTrail(hit.point);
+        }
+        else
+        {
+            SpawnTrail(ray.GetPoint(99));
+        }
+
+          
+
+        shooting = false;
+        agent.SetDestination(lastSeenPos);
+
+
+
+    }
+
+    public void SpawnTrail(Vector3 hitPoint)
+    {
+        if (bulletTrail == null)
+        {
+            Debug.Log("No Trail set! Returning...");
+            return;
+        }
+
+        GameObject line = Instantiate(bulletTrail, firePoint.position, Quaternion.identity);
+        LineRenderer lineRen = line.GetComponent<LineRenderer>();
+
+        lineRen.useWorldSpace = true;
+        lineRen.SetPosition(0, firePoint.position);
+        lineRen.SetPosition(1, hitPoint);
+
+        //Destroy(line, trailDuration);
     }
 
 

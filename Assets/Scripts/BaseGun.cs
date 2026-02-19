@@ -22,12 +22,17 @@ public abstract class BaseGun : BaseWeapon
 
     public Camera mainCamera;
 
+    public Animator animator;
+
+    public LayerMask hitLayer;
+
 
 
     private void Start()
     {
         mainCamera = Camera.main;
         Debug.Log("Calling Start");
+        animator = GetComponent<Animator>();
     }
     public virtual void DecreaseAmmo()
     {
@@ -40,6 +45,10 @@ public abstract class BaseGun : BaseWeapon
     }
     public IEnumerator Reload()
     {
+        FindFirstObjectByType<AudioManager>().PlaySound("Reload", transform.position, gameObject);
+
+        animator.SetTrigger("Reload");
+
         Debug.Log("Reload");
 
         if (reserveAmmo <= 0)

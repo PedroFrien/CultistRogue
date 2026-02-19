@@ -25,12 +25,13 @@ public class PlayerHealth : BaseCharacter
 
         if (CurrentHealth <= 0 )
         {
-            Die();
+            Invoke("Die", .1f);
         }
     }
 
     public override void Die()
     {
+        FindFirstObjectByType<AudioManager>().PlaySound("Lose", transform.position, gameObject);
         gameManager.LoadScene("DeathScreen");
     }
 }

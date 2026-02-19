@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public bool paused = false;
+    public bool menuOpen = false;
 
     [SerializeField] private GameObject pauseMenu;
     // Start is called once before the first execution of Update after the MonoBehaviour is created

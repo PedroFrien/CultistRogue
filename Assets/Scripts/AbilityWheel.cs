@@ -37,6 +37,8 @@ public class AbilityWheel : MonoBehaviour
         }
 
         hoveredAbility = null;
-        
+
+        FindFirstObjectByType<AudioManager>().PlaySound("Ability", transform.position, gameObject);
+
     }
 }

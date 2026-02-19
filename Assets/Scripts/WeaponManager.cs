@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class WeaponManager : MonoBehaviour
 {
@@ -9,6 +10,8 @@ public class WeaponManager : MonoBehaviour
     public BaseWeapon currentWeapon;
 
     [SerializeField] private Transform weaponHoldPos;
+
+    [SerializeField] private TMP_Text ammoCount;
 
 
     public void Start()
