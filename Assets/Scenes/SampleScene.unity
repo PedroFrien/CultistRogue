@@ -377,6 +377,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MouseOnStart
   mouseOnStart: 0
+  Win: 0
+  Lose: 0
 --- !u!4 &27017555
 Transform:
   m_ObjectHideFlags: 0
@@ -1390,6 +1392,9 @@ MonoBehaviour:
   music: []
   effectsSlider: {fileID: 0}
   musicSlider: {fileID: 0}
+  environmentLayer:
+    serializedVersion: 2
+    m_Bits: 8
 --- !u!4 &228245636
 Transform:
   m_ObjectHideFlags: 0
@@ -6649,6 +6654,9 @@ MonoBehaviour:
   SprintSpeed: 8
   CrouchWalkSpeed: 1
   CrouchSprintSpeed: 3
+  environmentLayer:
+    serializedVersion: 2
+    m_Bits: 8
   crouchHeight: 0.5
   standingHeight: 2
   MovementEnabled: 1
@@ -9157,12 +9165,16 @@ PrefabInstance:
       objectReference: {fileID: 785575374}
     - target: {fileID: 718584012737510018, guid: 0121f65b66cf6064e9090b91c1e9f5f9, type: 3}
       propertyPath: m_VersionIndex
-      value: 5616
+      value: 5625
       objectReference: {fileID: 0}
     - target: {fileID: 4027219444909127172, guid: 0121f65b66cf6064e9090b91c1e9f5f9, type: 3}
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 785575374}
+    - target: {fileID: 5536555344164566656, guid: 0121f65b66cf6064e9090b91c1e9f5f9, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5822381878764452721, guid: 0121f65b66cf6064e9090b91c1e9f5f9, type: 3}
       propertyPath: m_LocalPosition.x
       value: 35.54
@@ -9212,6 +9224,14 @@ PrefabInstance:
       value: TestEnemy (1)
       objectReference: {fileID: 0}
     - target: {fileID: 8394386236545374051, guid: 0121f65b66cf6064e9090b91c1e9f5f9, type: 3}
+      propertyPath: xFOV
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 8394386236545374051, guid: 0121f65b66cf6064e9090b91c1e9f5f9, type: 3}
+      propertyPath: shooting
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8394386236545374051, guid: 0121f65b66cf6064e9090b91c1e9f5f9, type: 3}
       propertyPath: patrolPoints.Array.size
       value: 2
       objectReference: {fileID: 0}
@@ -9240,7 +9260,8 @@ PrefabInstance:
       value: -12.14
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 5536555344164566656, guid: 0121f65b66cf6064e9090b91c1e9f5f9, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0121f65b66cf6064e9090b91c1e9f5f9, type: 3}
@@ -13168,7 +13189,7 @@ PrefabInstance:
       objectReference: {fileID: 1330616799}
     - target: {fileID: 718584012737510018, guid: 0121f65b66cf6064e9090b91c1e9f5f9, type: 3}
       propertyPath: m_VersionIndex
-      value: 5616
+      value: 5625
       objectReference: {fileID: 0}
     - target: {fileID: 4027219444909127172, guid: 0121f65b66cf6064e9090b91c1e9f5f9, type: 3}
       propertyPath: m_Mesh
@@ -13485,7 +13506,7 @@ GameObject:
   - component: {fileID: 1921204202}
   - component: {fileID: 1921204201}
   - component: {fileID: 1921204205}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14962,7 +14983,7 @@ PrefabInstance:
       objectReference: {fileID: 871464257}
     - target: {fileID: 8920351960624143617, guid: f0713346a01d2fe4197ee268dcede0f7, type: 3}
       propertyPath: m_VersionIndex
-      value: 3781
+      value: 3784
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -15040,7 +15061,7 @@ PrefabInstance:
       objectReference: {fileID: 1651815240}
     - target: {fileID: 10359570959514905, guid: 32b4ec9cafeff62438226575064338ad, type: 3}
       propertyPath: m_VersionIndex
-      value: 5568
+      value: 5574
       objectReference: {fileID: 0}
     - target: {fileID: 3769428197797571862, guid: 32b4ec9cafeff62438226575064338ad, type: 3}
       propertyPath: magSize

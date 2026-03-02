@@ -44,6 +44,8 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private Slider effectsSlider;
     [SerializeField] private Slider musicSlider;
 
+    [SerializeField] private LayerMask environmentLayer;
+
     void Awake()
     {
         //if (instance == null)
@@ -210,4 +212,43 @@ public class AudioManager : MonoBehaviour
             PlayBackgroundMusic(music[0].name);
         }
     }
+
+
+
+    #region World Audio
+
+    public void PlayWorldSound(string name, Vector3 position, GameObject playingObject, float radius)
+    {
+        Debug.Log("PlayWorldSound called");
+
+        PlaySound(name, position, playingObject);
+
+        
+        Vector3 worldPos = position;
+        RaycastHit hit;
+
+        if (Physics.Raycast(position, Vector3.down, out hit, Mathf.Infinity, environmentLayer))
+        {
+            worldPos = hit.point;
+        }
+
+
+        Collider[] colliders = Physics.OverlapSphere(worldPos, radius);
+
+        foreach (Collider collider in colliders)
+        {
+            Debug.Log("Collider Found");
+
+            BaseEnemy enemy = collider.GetComponent<BaseEnemy>();
+
+            if (enemy != null)
+            {
+                Debug.Log("Enemy Found");
+                enemy.Investigate(worldPos);
+            }
+        }
+    }
+
+
+    #endregion
 }

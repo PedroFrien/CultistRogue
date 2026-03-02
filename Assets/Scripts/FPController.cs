@@ -21,7 +21,7 @@ public class FPController : MonoBehaviour
     public float MaxUprightSpeed => SprintInput ? SprintSpeed : WalkSpeed;
     public float MaxCrouchSpeed => SprintInput ? CrouchSprintSpeed : CrouchWalkSpeed;
 
-    public float MaxSpeed => CrouchInput ? MaxCrouchSpeed : MaxUprightSpeed;
+    public float MaxSpeed => Crouched ? MaxCrouchSpeed : MaxUprightSpeed;
 
  
 
@@ -33,6 +33,7 @@ public class FPController : MonoBehaviour
     [SerializeField] float SprintSpeed = 8f;
     [SerializeField] float CrouchWalkSpeed = 1.5f;
     [SerializeField] float CrouchSprintSpeed = 3.5f;
+    [SerializeField] LayerMask environmentLayer;
 
 
 
@@ -114,6 +115,7 @@ public class FPController : MonoBehaviour
     public Vector2 LookInput;
     public bool SprintInput;
     public bool CrouchInput;
+    public bool Crouched;
     private Vector3 initialCameraPos;
 
 
@@ -312,10 +314,31 @@ public class FPController : MonoBehaviour
 
     void MoveUpdate()
     {
+        if (CrouchInput) Crouched = true;
 
-        var heightTarget = CrouchInput ? crouchHeight : standingHeight;
+        if (CrouchInput == false)
+        {
+            RaycastHit hit;
+            if (Physics.Raycast(fpCamera.transform.position, Vector3.up, out hit, characterController.height, environmentLayer))
+            {
+                Crouched = true;
+                Debug.Log("Something Overhead");
+            }
+            else
+            {
+                Crouched = false;
+            }
+        }
+
+
+        var heightTarget = Crouched ? crouchHeight : standingHeight;
+
+
+        
+
+        
+
         fpCamera.transform.localPosition = new Vector3(0, heightTarget / 2, 0);
-
         characterController.height = heightTarget;
 
 

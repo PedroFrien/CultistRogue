@@ -67,6 +67,11 @@ public abstract class BaseEnemy : BaseCharacter
     public bool shooting;
     private Coroutine shootingCoroutine;
 
+    [Header("Vision Cone")]
+    public float visionRange;
+    public float xFOV;
+    public float yFOV;
+
 
 
 
@@ -106,15 +111,19 @@ public abstract class BaseEnemy : BaseCharacter
             transform.LookAt(player.transform);
         }
 
+        bool playerVisible = PlayerInLOS();
+
         if (Chasing == true)
         {
-            if (Vector3.Distance(transform.position, player.transform.position) <= range && !shooting && PlayerInLOS())
-            {                
+            questionMark.SetActive(false);
+
+            if (Vector3.Distance(transform.position, player.transform.position) <= range && !shooting && playerVisible)
+            {
                 shootingCoroutine = StartCoroutine(Shoot());
             }
 
 
-            else if (PlayerInLOS() && !shooting)
+            else if (playerVisible && !shooting)
             {
                 lastSeenPos = player.transform.position;
                 agent.SetDestination(lastSeenPos);
@@ -180,7 +189,7 @@ public abstract class BaseEnemy : BaseCharacter
         Debug.Log("Starting to move To Pos");
         agent.SetDestination(pos);
 
-        while (Vector3.Distance(transform.position, pos) >= 1f)
+        while (Vector3.Distance(transform.position, pos) >= 2f)
         {
             yield return null;
             Debug.Log("Moving to pos");
@@ -201,10 +210,16 @@ public abstract class BaseEnemy : BaseCharacter
 
     public void Investigate(Vector3 pos)
     {
+        if (Chasing)
+        {
+            Debug.Log("Can't investigate, enemy is chasing!");
+            return;
+        }
+
         NavMeshHit hit;
         var path = new NavMeshPath();
 
-        if (NavMesh.SamplePosition(pos, out hit, 1.0f, NavMesh.AllAreas) && NavMesh.CalculatePath(transform.position, pos, 1, path))
+        if (NavMesh.SamplePosition(pos, out hit, 1.0f, NavMesh.AllAreas) && NavMesh.CalculatePath(transform.position, pos, 1, path) && path.status == NavMeshPathStatus.PathComplete)
         {
             if (movementCoroutine != null) StopCoroutine(movementCoroutine);
 
@@ -212,6 +227,10 @@ public abstract class BaseEnemy : BaseCharacter
             movementCoroutine = StartCoroutine(MoveToPos(pos));
 
             Investigating = true;
+        }
+        else
+        {
+            Debug.Log("Investigate position not on navmesh!");
         }
 
 
@@ -251,13 +270,27 @@ public abstract class BaseEnemy : BaseCharacter
                 Debug.DrawRay(transform.position, dir * hit.distance, Color.green, 0.0f, false);
                 Debug.Log("Player in Sight");
                 lastSeenPos = player.transform.position;
-                return true;
+
+                float angle = Vector3.Angle(dir, transform.forward);
+                if (angle < xFOV && Vector3.Distance(player.transform.position, transform.position) <= visionRange)
+                {
+                    playerInCone = true;
+                }
+                else
+                {
+                    playerInCone = false;
+                }
+
+
+
+                    return true;
             }
             else
             {
                 // Draw yellow line when hitting something else
                 Debug.DrawRay(transform.position, dir * hit.distance, Color.yellow, 0.0f, false);
                 Debug.Log("Player is NOT in Sight");
+                playerInCone = false;
                 return false;
             }
         }
@@ -266,8 +299,14 @@ public abstract class BaseEnemy : BaseCharacter
             // Draw red line when nothing is hit within sightRange
             Debug.DrawRay(transform.position, dir * sightRange, Color.red, 0.0f, false);
             Debug.Log("Player is NOT in Sight");
+            playerInCone = false;
             return false;
         }
+
+        
+
+
+        
     }
 
     public virtual IEnumerator Shoot()
@@ -331,6 +370,17 @@ public abstract class BaseEnemy : BaseCharacter
         lineRen.SetPosition(1, hitPoint);
 
         //Destroy(line, trailDuration);
+    }
+
+    public override void TakeDamage(float damageTaken)
+    {
+        CurrentHealth -= damageTaken;
+        if (CurrentHealth <= 0)
+        {
+            Die();
+        }
+
+        StartChase();
     }
 
 

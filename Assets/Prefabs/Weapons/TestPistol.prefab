@@ -644,6 +644,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Pistol
   damage: 5
+  offsetPos: {x: 0, y: 0, z: 0}
+  rotateOffsetPos: {x: 0, y: 0, z: 0}
+  noiseRadius: 90
   currentAmmo: 6
   magSize: 6
   reserveAmmo: 12
@@ -660,6 +663,7 @@ MonoBehaviour:
   hitLayer:
     serializedVersion: 2
     m_Bits: 200
+  reloading: 0
 --- !u!54 &8289103651031035972
 Rigidbody:
   m_ObjectHideFlags: 0

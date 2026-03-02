@@ -28,6 +28,8 @@ public abstract class BaseGun : BaseWeapon
 
     public bool reloading = false;
 
+    
+
 
 
     private void Start()
