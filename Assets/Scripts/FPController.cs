@@ -227,25 +227,32 @@ public class FPController : MonoBehaviour
 
     public void OpenWheel()
     {
+        if (gameManager.paused) return;
+
         abilityWheel.SetActive(true);
+        abilityWheel.GetComponent<Animator>().SetBool("Active", true);
         gameManager.SetMouseActive(true);
         gameManager.SetTimeScale(slowTime);
         CameraEnabled = false;
         LookEnabled = false;
+       
         gameManager.menuOpen = true;
         
     }
 
     public void CloseWheel()
     {
+        if (gameManager.paused) return;
+
         abilityWheel.GetComponent<AbilityWheel>().ActivateHoveredAbility();
 
-
+        abilityWheel.GetComponent<Animator>().SetBool("Active", false);
         abilityWheel.SetActive(false);
         gameManager.SetMouseActive(false);
         gameManager.SetTimeScale(1f);
         CameraEnabled = true;
         LookEnabled = true;
+        MovementEnabled = true;
         gameManager.menuOpen = false;
 
 
@@ -296,17 +303,17 @@ public class FPController : MonoBehaviour
         if (gameManager.paused)
         {
             gameManager.SetPauseMenu(false);
-            MovementEnabled = true;
-            CameraEnabled = true;
-            LookEnabled = true;
+            //MovementEnabled = true;
+            //CameraEnabled = true;
+            //LookEnabled = true;
         }
 
         else
         {
             gameManager.SetPauseMenu(true);
-            MovementEnabled = false;
-            CameraEnabled = false;
-            LookEnabled = false;
+            //MovementEnabled = false;
+            //CameraEnabled = false;
+            //LookEnabled = false;
         }
 
       

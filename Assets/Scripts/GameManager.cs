@@ -1,3 +1,4 @@
+using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -7,13 +8,25 @@ public class GameManager : MonoBehaviour
     public bool paused = false;
     public bool menuOpen = false;
 
+    private FPController player;
+
     [SerializeField] private GameObject pauseMenu;
+
+    private Animator PMAnimator;
+    private bool animActive;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         if (pauseMenu != null)
         {
-            SetPauseMenu(false);
+            PMAnimator = pauseMenu.GetComponent<Animator>();
+            player = FindFirstObjectByType<FPController>();
+
+
+
+            SetMouseActive(false);
+            SetPause(false);
+            pauseMenu.SetActive(false);
         }
     
 
@@ -45,12 +58,30 @@ public class GameManager : MonoBehaviour
         if (pause)
         {
             paused = true;
+
+            if (player != null)
+            {
+                player.MovementEnabled = false;
+                player.CameraEnabled = false;
+                player.LookEnabled = false;
+            }
+            
+
             Time.timeScale = 0;
         }
 
         else
         {
             paused = false;
+
+            if (player != null)
+            {
+                player.MovementEnabled = true;
+                player.CameraEnabled = true;
+                player.LookEnabled = true;
+            }
+            
+
             Time.timeScale = 1;
         }
     }
@@ -62,18 +93,35 @@ public class GameManager : MonoBehaviour
 
     public void SetPauseMenu(bool pause) 
     {
-       if (pause)
+        if (animActive) return;
+        animActive = true;
+
+        StartCoroutine(PauseAnim(pause));
+    }
+
+    private IEnumerator PauseAnim(bool active)
+    {
+        pauseMenu.SetActive(true);
+        PMAnimator.SetBool("Active", active);
+        SetMouseActive(active);
+        SetPause(active);
+
+        float animationLength = .55f; // Get actual animation length
+        float elapsedTime = 0f;
+
+        while (elapsedTime < animationLength)
         {
-            SetMouseActive(true);
-            SetPause(true);
-            pauseMenu.SetActive(true);
+            elapsedTime += Time.unscaledDeltaTime;
+            yield return null;
         }
-        else
-        {
-            SetMouseActive(false);
-            SetPause(false);
-            pauseMenu.SetActive(false);
-        }
+
+
+        SetMouseActive(active);
+        SetPause(active);       
+        pauseMenu.SetActive(active);
+
+        animActive = false;
+        
     }
 
     public void LoadScene(string sceneName)

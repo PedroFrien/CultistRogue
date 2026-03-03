@@ -6,7 +6,8 @@ public class Pistol : BaseGun
     
     public override void Use()
     {
-        if (FindFirstObjectByType<GameManager>().menuOpen) return;
+        GameManager gameManager = FindFirstObjectByType<GameManager>();
+        if (gameManager.menuOpen || gameManager.paused) return;
 
 
         if (currentAmmo <= 0)
