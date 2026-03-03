@@ -14099,7 +14099,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2048238836}
-  - {fileID: 1760935465}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1106644379
@@ -16333,6 +16332,61 @@ Transform:
   - {fileID: 1443334720}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 22.769, z: 0}
+--- !u!1 &1705961135
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1705961137}
+  - component: {fileID: 1705961136}
+  m_Layer: 0
+  m_Name: CardPivot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!95 &1705961136
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1705961135}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 0d32eee7059a6cf4bbe840ac0df00d62, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!4 &1705961137
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1705961135}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.014244008, y: 0.29443383, z: 0.006833556, w: 0.95554125}
+  m_LocalPosition: {x: 0.5739589, y: 0.85451275, z: -9.199281}
+  m_LocalScale: {x: 0.112677455, y: 0.1794358, z: 0.0038541167}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1797393364}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1760935461
 GameObject:
   m_ObjectHideFlags: 0
@@ -16430,7 +16484,7 @@ RectTransform:
   m_Children:
   - {fileID: 579512936}
   - {fileID: 2097283337}
-  m_Father: {fileID: 1070866876}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -16649,7 +16703,6 @@ GameObject:
   - component: {fileID: 1797393363}
   - component: {fileID: 1797393362}
   - component: {fileID: 1797393361}
-  - component: {fileID: 1797393365}
   m_Layer: 0
   m_Name: Card (1)
   m_TagString: Untagged
@@ -16743,36 +16796,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1797393360}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.014244007, y: 0.29443383, z: 0.0068335556, w: 0.95554125}
-  m_LocalPosition: {x: 0.572, y: 0.9458, z: -9.2014}
-  m_LocalScale: {x: 0.11267746, y: 0.1794358, z: 0.003854117}
+  m_LocalRotation: {x: 9.313227e-10, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.5090002, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 78576602}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1705961137}
   m_LocalEulerAnglesHint: {x: -1.791, y: 34.247, z: 0.268}
---- !u!95 &1797393365
-Animator:
-  serializedVersion: 7
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1797393360}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: d73ac6605475cbd4888e3af7ea469d4a, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!43 &1914716051
 Mesh:
   m_ObjectHideFlags: 0
@@ -18222,13 +18253,14 @@ SceneRoots:
   m_Roots:
   - {fileID: 861513442}
   - {fileID: 2120121977}
+  - {fileID: 1760935465}
   - {fileID: 1070866876}
   - {fileID: 396450899}
   - {fileID: 1106644381}
   - {fileID: 1047553840}
   - {fileID: 1694260747}
   - {fileID: 1978463027}
-  - {fileID: 1797393364}
+  - {fileID: 1705961137}
   - {fileID: 514365691}
   - {fileID: 1994171309}
   - {fileID: 748826131}
