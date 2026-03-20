@@ -4,8 +4,9 @@ using UnityEngine;
 public class Pistol : BaseGun
 {
     
-    public override void Use()
+    public override void Attack()
     {
+        if (!equipped) return;
         GameManager gameManager = FindFirstObjectByType<GameManager>();
         if (gameManager.menuOpen || gameManager.paused) return;
 

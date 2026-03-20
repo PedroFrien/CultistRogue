@@ -8,7 +8,6 @@ public abstract class BaseGun : BaseWeapon
     public int magSize;
     public int reserveAmmo;
 
-    public float fireInterval;
     public float range;
 
     public float reloadTime;
@@ -38,6 +37,16 @@ public abstract class BaseGun : BaseWeapon
         Debug.Log("Calling Start");
         animator = GetComponent<Animator>();
     }
+
+    public override void Use()
+    {
+        if (reloading || !equipped || !canAttack) return;
+        canAttack = false;
+
+        Attack();
+
+        Invoke("AttackReset", attackInterval);
+    }
     public virtual void DecreaseAmmo()
     {
         currentAmmo -= 1;
@@ -55,6 +64,7 @@ public abstract class BaseGun : BaseWeapon
         }
 
         reloading = true;
+        canAttack = false;
 
         FindFirstObjectByType<AudioManager>().PlaySound("Reload", transform.position, gameObject);
 
@@ -79,6 +89,7 @@ public abstract class BaseGun : BaseWeapon
         }
 
         reloading = false;
+        canAttack = true;
 
         FindFirstObjectByType<WeaponManager>().GunUpdate();
     }
@@ -129,4 +140,8 @@ public abstract class BaseGun : BaseWeapon
 
         
     }
+
+
+
+
 }

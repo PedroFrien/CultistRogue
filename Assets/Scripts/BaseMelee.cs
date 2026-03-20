@@ -6,8 +6,8 @@ public abstract class BaseMelee : BaseWeapon
     public Camera mainCamera;
     public Animator animator;
     public LayerMask meleeMask;
-    public float attackInterval;
-    public bool canAttack = true;
+    
+    
 
 
     private void Start()
@@ -15,11 +15,8 @@ public abstract class BaseMelee : BaseWeapon
         mainCamera = Camera.main;
         animator = GetComponent<Animator>();
     }
-    public override void Use()
+    public override void Attack()
     {
-        if (!canAttack || FindFirstObjectByType<GameManager>().menuOpen) return;
-        canAttack = false;
-
         animator.SetTrigger("Attack");
 
         FindFirstObjectByType<AudioManager>().PlaySound("Stab", transform.position, gameObject);
@@ -34,13 +31,8 @@ public abstract class BaseMelee : BaseWeapon
             }
         }
 
-        Invoke("AttackReset", attackInterval);
 
-        
     }
 
-    public void AttackReset()
-    {
-        canAttack = true;
-    }
+    
 }

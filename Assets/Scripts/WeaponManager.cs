@@ -1,6 +1,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using System.Transactions;
+using UnityEngine.Jobs;
 
 public class WeaponManager : MonoBehaviour
 {
@@ -8,12 +10,17 @@ public class WeaponManager : MonoBehaviour
     public List<BaseWeapon> heldWeapons = new List<BaseWeapon>();
 
     public BaseWeapon currentWeapon;
+    public int currentWeaponIndex = 0;
+    public int maxWeapons;
 
     [SerializeField] private Transform weaponHoldPos;
 
     [SerializeField] private TMP_Text ammoCount;
 
-
+    private void Update()
+    {
+        Debug.Log(currentWeaponIndex);
+    }
     public void Start()
     {
         heldWeapons.Clear();
@@ -29,30 +36,54 @@ public class WeaponManager : MonoBehaviour
                 spawnedWeapon.transform.parent = weaponHoldPos;
                 spawnedWeapon.transform.localPosition += spawnedWeapon.offsetPos;
                 spawnedWeapon.transform.localRotation = Quaternion.Euler(spawnedWeapon.rotateOffsetPos);
-                //spawnedWeapon.transform.localPosition = Vector3.zero;
-                //spawnedWeapon.transform.localRotation = Quaternion.identity;
 
+
+
+                spawnedWeapon.GetComponent<Rigidbody>().isKinematic = true;
+                spawnedWeapon.GetComponent<BoxCollider>().enabled = false;
 
                 heldWeapons.Add(spawnedWeapon);
+                spawnedWeapon.equipped = true;
                 spawnedWeapon.gameObject.SetActive(false);
             }
 
             currentWeapon = heldWeapons[0];
+            currentWeaponIndex = 0;
 
-            currentWeapon.gameObject.SetActive(true);
-            currentWeapon.GetComponent<Rigidbody>().isKinematic = true;
+       
+
+            SwapWeapon(currentWeaponIndex);
+            
+            
 
         }
+
+
+        Debug.Log(heldWeapons.Count);
     }
 
 
     public void SwapWeapon(int index)
     {
-        currentWeapon.gameObject.SetActive(false);
-        currentWeapon = heldWeapons[index];
-        currentWeapon.gameObject.SetActive(true);
+        if (heldWeapons.Count >= index + 1 && heldWeapons[index] != null)
+        {
+            Debug.Log("Trying to swap to weapon");
 
-        GunUpdate();
+            if (currentWeapon != null)
+            {
+                currentWeapon.gameObject.SetActive(false);
+            }           
+            currentWeapon = heldWeapons[index];
+            currentWeapon.gameObject.SetActive(true);
+            currentWeapon.GetComponent<Rigidbody>().isKinematic = true;
+            currentWeapon.GetComponent<BoxCollider>().enabled = false;
+            
+
+            currentWeaponIndex = index;
+            currentWeapon = heldWeapons[index];
+
+            GunUpdate();
+        }
     }
 
     public void UseWeapon()
@@ -64,9 +95,10 @@ public class WeaponManager : MonoBehaviour
         else
         {
             currentWeapon.Use();
+            GunUpdate();
         }
 
-        GunUpdate();
+        
         
     }
 
@@ -96,6 +128,77 @@ public class WeaponManager : MonoBehaviour
         GunUpdate();
 
         
+    }
+
+    public void PickupWeapon(BaseWeapon weapon)
+    {
+        if (heldWeapons.Count == maxWeapons)
+        {
+            DropWeapon();
+        }
+
+
+
+
+
+        weapon.transform.parent = weaponHoldPos;
+        weapon.transform.localPosition = weapon.offsetPos;
+        weapon.transform.localRotation = Quaternion.Euler(weapon.rotateOffsetPos);
+        weapon.GetComponent<Rigidbody>().isKinematic = true;
+        weapon.GetComponent<BoxCollider>().enabled = false;
+
+
+
+        heldWeapons.Add(weapon);
+        //weapon.gameObject.SetActive(false);
+
+        weapon.equipped = true;
+        int weaponIndex = heldWeapons.Count - 1;
+
+        SwapWeapon(weaponIndex);
+
+    }
+
+    public void DropWeapon()
+    {
+        if (currentWeapon == null) return;
+
+        BaseWeapon weapon = heldWeapons[currentWeaponIndex];
+
+        if (weapon != null)
+        {
+            weapon.gameObject.SetActive(true);
+            weapon.transform.parent = null;
+            weapon.GetComponent<Rigidbody>().isKinematic = false;
+            weapon.GetComponent<BoxCollider>().enabled = true;
+
+            weapon.GetComponent<BaseWeapon>().enabled = false;
+
+            
+        }
+
+        currentWeapon = null;
+        
+        //weapon.transform.localPosition += weapon.offsetPos;
+        //weapon.transform.localRotation = Quaternion.Euler(weapon.rotateOffsetPos);
+
+
+
+        weapon.equipped = false;
+
+        heldWeapons.Remove(weapon);
+       
+        if (heldWeapons.Count < currentWeaponIndex + 1)
+        {
+            currentWeaponIndex -= 1;
+            currentWeaponIndex = Mathf.Clamp(currentWeaponIndex, 0, heldWeapons.Count + 1);
+        }
+
+        SwapWeapon(currentWeaponIndex);
+
+
+
+
     }
 
     
