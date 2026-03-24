@@ -65,6 +65,13 @@ public class WeaponManager : MonoBehaviour
 
     public void SwapWeapon(int index)
     {
+        if (currentWeapon != null)
+        {
+            BaseGun potentialGun = currentWeapon.GetComponent<BaseGun>();
+            if (potentialGun != null && potentialGun.reloading == true) return;
+        }
+        
+        
         if (heldWeapons.Count >= index + 1 && heldWeapons[index] != null)
         {
             Debug.Log("Trying to swap to weapon");
@@ -104,16 +111,24 @@ public class WeaponManager : MonoBehaviour
 
     public void GunUpdate()
     {
-        BaseGun gun = currentWeapon.GetComponent<BaseGun>();
-        if (gun != null)
+        if (currentWeapon != null)
         {
-            ammoCount.gameObject.SetActive(true);
-            ammoCount.text = gun.currentAmmo + " / " + gun.reserveAmmo;
+            BaseGun gun = currentWeapon.GetComponent<BaseGun>();
+            if (gun != null)
+            {
+                ammoCount.gameObject.SetActive(true);
+                ammoCount.text = gun.currentAmmo + " / " + gun.reserveAmmo;
+            }
+            else
+            {
+                ammoCount.gameObject.SetActive(false);
+            }
         }
         else
         {
             ammoCount.gameObject.SetActive(false);
         }
+        
     }
 
     public void ReloadWeapon()

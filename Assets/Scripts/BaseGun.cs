@@ -77,14 +77,15 @@ public abstract class BaseGun : BaseWeapon
 
         yield return new WaitForSeconds(reloadTime);
 
-        if (reserveAmmo >= magSize)
+        int ammoNeeded = magSize - currentAmmo;
+        if (reserveAmmo >= ammoNeeded)
         {
+            reserveAmmo -= ammoNeeded;
             currentAmmo = magSize;
-            reserveAmmo -= magSize;
         }
         else
         {
-            currentAmmo = reserveAmmo;
+            currentAmmo += reserveAmmo;
             reserveAmmo = 0;
         }
 
