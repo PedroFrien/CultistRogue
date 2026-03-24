@@ -17,10 +17,10 @@ public class WeaponManager : MonoBehaviour
 
     [SerializeField] private TMP_Text ammoCount;
 
-    private void Update()
-    {
-        Debug.Log(currentWeaponIndex);
-    }
+    //private void Update()
+    //{
+
+    //}
     public void Start()
     {
         heldWeapons.Clear();
@@ -58,8 +58,6 @@ public class WeaponManager : MonoBehaviour
 
         }
 
-
-        Debug.Log(heldWeapons.Count);
     }
 
 
@@ -74,7 +72,6 @@ public class WeaponManager : MonoBehaviour
         
         if (heldWeapons.Count >= index + 1 && heldWeapons[index] != null)
         {
-            Debug.Log("Trying to swap to weapon");
 
             if (currentWeapon != null)
             {

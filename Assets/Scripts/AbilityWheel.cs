@@ -33,7 +33,8 @@ public class AbilityWheel : MonoBehaviour
     {
         if (hoveredAbility != null)
         {
-            hoveredAbility.OnActivate();
+            //hoveredAbility.OnActivate();
+            abilityManager.ActivateAbility(hoveredAbility);
             FindFirstObjectByType<AudioManager>().PlaySound("Ability", transform.position, gameObject);
         }
 

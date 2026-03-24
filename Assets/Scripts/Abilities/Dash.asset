@@ -15,7 +15,8 @@ MonoBehaviour:
   upgraded: 0
   onCooldown: 0
   abilityIcon: {fileID: 21300000, guid: ee2d0e1bb6fe33c4881a531c4b66585c, type: 3}
-  cooldown: 10
+  cooldown: 1
   cooldownTime: 0
+  manaCost: 20
   force: 40
   upgradedForce: 80

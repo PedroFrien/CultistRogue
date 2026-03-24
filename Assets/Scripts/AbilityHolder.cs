@@ -68,7 +68,6 @@ public class AbilityHolder : MonoBehaviour
     public void UpdateHolder()
     {
 
-        Debug.Log("UpdateHolder called");
         if (abilityManager.equippedAbilities.Count > abilitySlot)
         {
             ability = abilityManager.equippedAbilities[abilitySlot];

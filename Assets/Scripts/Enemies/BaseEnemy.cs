@@ -186,13 +186,11 @@ public abstract class BaseEnemy : BaseCharacter
 
     public IEnumerator MoveToPos(Vector3 pos)
     {
-        Debug.Log("Starting to move To Pos");
         agent.SetDestination(pos);
 
         while (Vector3.Distance(transform.position, pos) >= 2f)
         {
             yield return null;
-            Debug.Log("Moving to pos");
         }
 
         if (Vector3.Distance(transform.position, currentPatrolPoint) <= 2f)
@@ -212,7 +210,6 @@ public abstract class BaseEnemy : BaseCharacter
     {
         if (Chasing)
         {
-            Debug.Log("Can't investigate, enemy is chasing!");
             return;
         }
 
@@ -263,12 +260,11 @@ public abstract class BaseEnemy : BaseCharacter
 
         if (Physics.Raycast(transform.position, dir, out hit, sightRange, playerDetect))
         {
-            Debug.Log("Hit SOMETHING");
             if (hit.collider.CompareTag("Player"))
             {
                 // Change line color to green when player is detected
                 Debug.DrawRay(transform.position, dir * hit.distance, Color.green, 0.0f, false);
-                Debug.Log("Player in Sight");
+  
                 lastSeenPos = player.transform.position;
 
                 float angle = Vector3.Angle(dir, transform.forward);
@@ -289,7 +285,6 @@ public abstract class BaseEnemy : BaseCharacter
             {
                 // Draw yellow line when hitting something else
                 Debug.DrawRay(transform.position, dir * hit.distance, Color.yellow, 0.0f, false);
-                Debug.Log("Player is NOT in Sight");
                 playerInCone = false;
                 return false;
             }
@@ -298,7 +293,6 @@ public abstract class BaseEnemy : BaseCharacter
         {
             // Draw red line when nothing is hit within sightRange
             Debug.DrawRay(transform.position, dir * sightRange, Color.red, 0.0f, false);
-            Debug.Log("Player is NOT in Sight");
             playerInCone = false;
             return false;
         }

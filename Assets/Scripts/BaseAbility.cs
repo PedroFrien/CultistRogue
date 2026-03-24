@@ -12,6 +12,7 @@ public class BaseAbility : ScriptableObject
 
     public float cooldown;
     public float cooldownTime;
+    public float manaCost;
    
 
     public virtual void OnActivate() { }
@@ -27,7 +28,6 @@ public class BaseAbility : ScriptableObject
     public void IncrementCooldown()
     {
         if (!onCooldown) return;
-        Debug.Log("Incrementing Cooldown");
         cooldownTime += Time.deltaTime;
         if (cooldownTime >= cooldown)
         {

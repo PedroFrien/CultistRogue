@@ -1,4 +1,5 @@
 using NUnit.Framework;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -6,6 +7,10 @@ using UnityEngine.Events;
 
 public class AbilityManager : MonoBehaviour
 {
+    public float mana;
+    public float maxMana = 100f;
+    [SerializeField] private Healthbar manaBar;
+
     public List<BaseAbility> equippedAbilities = new List<BaseAbility>();
 
     public List<BaseAbility> onCooldown = new List<BaseAbility>();
@@ -15,9 +20,23 @@ public class AbilityManager : MonoBehaviour
     public UnityEvent abilityChange = new UnityEvent();
     public UnityEvent incrementCoolown = new UnityEvent();
 
+    public BaseAbility lastAbility;
+
     public int maxAbilities = 5;
 
+
+    [Header("Mana Regeneration")]
+    [SerializeField] private float manaRegenDelay;
+    [SerializeField] private float manaRegenSpeed;
+    [SerializeField] private float manaRegenDuration;
+    private Coroutine manaRegen;
+
     #region Ability Management
+
+    private void Start()
+    {
+        mana = maxMana;
+    }
     public void AddAbility(BaseAbility ability)
     {
         equippedAbilities.Add(ability);
@@ -28,12 +47,35 @@ public class AbilityManager : MonoBehaviour
 
 
     }
-    public void ActivateAbility(int abilityIndex)
+    public void ActivateAbility(BaseAbility ability)
     {
-        BaseAbility ability = equippedAbilities[abilityIndex];
+        Debug.Log("ActivateAbility called");
+        //BaseAbility ability = equippedAbilities[abilityIndex];
 
-        ability.OnActivate();
+        if (mana >= ability.manaCost)
+        {
+            Debug.Log("Activating Ability");
+            ability.OnActivate();
 
+            lastAbility = ability;
+
+            mana -= ability.manaCost;
+
+            float barValue = mana / maxMana;
+
+            manaBar.ChangeValue(barValue);
+
+            Debug.Log(ability.manaCost);
+
+            if (manaRegen != null)
+            {
+                StopCoroutine(manaRegen);
+            }
+
+            manaRegen = StartCoroutine(RegenerateMana(manaRegenDuration));
+        }
+
+        Debug.Log("Can't use ability. No mana!");
         
     }
 
@@ -81,6 +123,35 @@ public class AbilityManager : MonoBehaviour
         //        onCooldown.Remove(ability);
         //    }
         //}
+    }
+
+    public void GainMana(float valueGained)
+    {
+        mana += valueGained;
+        mana = Mathf.Clamp(mana, 0, maxMana);
+    }
+
+    private IEnumerator RegenerateMana(float duration)
+    {
+        if (lastAbility == null) yield break;
+
+        yield return new WaitForSeconds(manaRegenDelay);
+
+        float manaToRestore = lastAbility.manaCost;
+        float elapsed = 0f;
+        float startMana = mana;
+        float targetMana = Mathf.Clamp(mana + manaToRestore, 0, maxMana);
+
+        while (elapsed < duration)
+        {
+            elapsed += Time.deltaTime;
+            mana = Mathf.Lerp(startMana, targetMana, elapsed / duration);
+            manaBar.ChangeValue(mana / maxMana);
+            yield return null;
+        }
+
+        mana = targetMana; 
+        manaBar.ChangeValue(mana / maxMana);
     }
 
 }

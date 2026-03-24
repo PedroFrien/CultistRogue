@@ -219,7 +219,6 @@ public class AudioManager : MonoBehaviour
 
     public void PlayWorldSound(string name, Vector3 position, GameObject playingObject, float radius)
     {
-        Debug.Log("PlayWorldSound called");
 
         PlaySound(name, position, playingObject);
 
@@ -237,13 +236,11 @@ public class AudioManager : MonoBehaviour
 
         foreach (Collider collider in colliders)
         {
-            Debug.Log("Collider Found");
 
             BaseEnemy enemy = collider.GetComponent<BaseEnemy>();
 
             if (enemy != null)
             {
-                Debug.Log("Enemy Found");
                 enemy.Investigate(worldPos);
             }
         }
