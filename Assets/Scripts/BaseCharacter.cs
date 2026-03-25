@@ -21,7 +21,13 @@ public abstract class BaseCharacter : MonoBehaviour
         Destroy(gameObject);
     }
 
-    public virtual void Heal() { }
+    public virtual void Heal(float healthGained) 
+    {
+        CurrentHealth += healthGained;
+        CurrentHealth = Mathf.Clamp(CurrentHealth, 0, MaxHealth);
+    
+    
+    }
     
     
 

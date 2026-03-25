@@ -29,6 +29,17 @@ public class PlayerHealth : BaseCharacter
         }
     }
 
+    public override void Heal(float healthGained)
+    {
+        CurrentHealth += healthGained;
+        CurrentHealth = Mathf.Clamp(CurrentHealth, 0, MaxHealth);
+
+        float healthValue = CurrentHealth / MaxHealth;
+        healthBar.ChangeValue(healthValue);
+
+
+    }
+
     public override void Die()
     {
         FindFirstObjectByType<AudioManager>().PlaySound("Lose", transform.position, gameObject);

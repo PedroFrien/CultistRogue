@@ -31,7 +31,7 @@ public class AbilityWheel : MonoBehaviour
 
     public void ActivateHoveredAbility() 
     {
-        if (hoveredAbility != null)
+        if (hoveredAbility != null && !hoveredAbility.onCooldown)
         {
             //hoveredAbility.OnActivate();
             abilityManager.ActivateAbility(hoveredAbility);

@@ -59,11 +59,8 @@ public class AbilityManager : MonoBehaviour
 
             lastAbility = ability;
 
-            mana -= ability.manaCost;
 
-            float barValue = mana / maxMana;
-
-            manaBar.ChangeValue(barValue);
+            GainMana(-ability.manaCost);
 
             Debug.Log(ability.manaCost);
 
@@ -128,6 +125,10 @@ public class AbilityManager : MonoBehaviour
     public void GainMana(float valueGained)
     {
         mana += valueGained;
+
+        float barValue = mana / maxMana;
+
+        manaBar.ChangeValue(barValue);
         mana = Mathf.Clamp(mana, 0, maxMana);
     }
 
@@ -139,19 +140,18 @@ public class AbilityManager : MonoBehaviour
 
         float manaToRestore = lastAbility.manaCost;
         float elapsed = 0f;
-        float startMana = mana;
-        float targetMana = Mathf.Clamp(mana + manaToRestore, 0, maxMana);
+        float regenRate = manaToRestore / duration; // mana per second
 
         while (elapsed < duration)
         {
+            float delta = regenRate * Time.deltaTime;
             elapsed += Time.deltaTime;
-            mana = Mathf.Lerp(startMana, targetMana, elapsed / duration);
+
+            mana = Mathf.Clamp(mana + delta, 0, maxMana);
             manaBar.ChangeValue(mana / maxMana);
+
             yield return null;
         }
-
-        mana = targetMana; 
-        manaBar.ChangeValue(mana / maxMana);
     }
 
 }
