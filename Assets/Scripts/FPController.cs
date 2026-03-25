@@ -140,10 +140,15 @@ public class FPController : MonoBehaviour
     [SerializeField] CinemachineCamera fpCamera;
     [SerializeField] CharacterController characterController;
     [SerializeField] Image interactPopup;
+    [SerializeField] Image cardPopup;
+    [SerializeField] private Sprite interactSprite;
     private GameManager gameManager;
 
     [SerializeField] private GameObject abilityWheel;
     private WeaponManager weaponManager;
+
+
+    
 
 
     
@@ -467,18 +472,32 @@ public class FPController : MonoBehaviour
             if (hit.collider.GetComponent<IInteractable>() != null)
             {
                 interactPopup.gameObject.SetActive(true);
-                selectedInteractable = hit.collider.GetComponent<IInteractable>();
+                AbilityPickup abilityPickup = hit.collider.GetComponent<AbilityPickup>();
+                if (abilityPickup != null)
+                {
+                    cardPopup.gameObject.SetActive(true);
+                    cardPopup.sprite = abilityPickup.instantiatedAbility.abilityIcon;
+                }
+                else
+                {
+                    cardPopup.gameObject.SetActive(false);
+                }
+
+
+                    selectedInteractable = hit.collider.GetComponent<IInteractable>();
             }
             else
             {
                 interactPopup.gameObject.SetActive(false);
                 selectedInteractable = null;
+                cardPopup.gameObject.SetActive(false);
             }
         }
         else
         {
             interactPopup.gameObject.SetActive(false);
             selectedInteractable = null;
+            cardPopup.gameObject.SetActive(false);
         }
     }
 
