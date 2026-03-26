@@ -476,7 +476,11 @@ public class FPController : MonoBehaviour
                 if (abilityPickup != null)
                 {
                     cardPopup.gameObject.SetActive(true);
-                    cardPopup.sprite = abilityPickup.instantiatedAbility.abilityIcon;
+                    if (abilityPickup.ability.abilityIcon != null)
+                    {
+                        cardPopup.sprite = abilityPickup.ability.abilityIcon;
+                    }
+                    
                 }
                 else
                 {
