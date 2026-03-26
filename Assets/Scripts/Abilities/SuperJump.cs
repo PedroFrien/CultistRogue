@@ -18,9 +18,8 @@ public class SuperJump : BaseAbility
         abilityManager.incrementCoolown.AddListener(IncrementCooldown);
     }
 
-    public override void OnActivate()
+    public override void Activate()
     {
-        if (onCooldown) return;
 
         controller = FindFirstObjectByType<FPController>();
 

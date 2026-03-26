@@ -249,7 +249,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 1712
+  m_VersionIndex: 1724
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -613,7 +613,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 2186
+  m_VersionIndex: 2198
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -1187,7 +1187,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 2058
+  m_VersionIndex: 2070
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -2532,7 +2532,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 2477
+  m_VersionIndex: 2489
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -2676,4 +2676,5 @@ MonoBehaviour:
   possibleWeapons:
   - {fileID: 5232340300521468738, guid: 52e72ab0f24959c4fb4b996cfdaaf8a7, type: 3}
   - {fileID: 4237846756375509396, guid: f0713346a01d2fe4197ee268dcede0f7, type: 3}
+  - {fileID: 7310564889906404799, guid: c58bd0a71cca2d14780ee0b38103c68f, type: 3}
   spawnPos: {fileID: 7167004924811503216}

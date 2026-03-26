@@ -6,7 +6,7 @@ using UnityEngine;
 public class TestAbility3 : BaseAbility
 {
 
-    public override void OnActivate()
+    public override void Activate()
     {
         if (!upgraded)
         {

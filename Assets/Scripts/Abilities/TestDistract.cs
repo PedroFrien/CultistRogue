@@ -15,9 +15,8 @@ public class TestDistract : BaseAbility
         abilityManager.incrementCoolown.AddListener(IncrementCooldown);
         player = GameObject.FindWithTag("Player").transform;
     }
-    public override void OnActivate()
+    public override void Activate()
     {
-        if (onCooldown) return;
 
         if (!upgraded)
         {

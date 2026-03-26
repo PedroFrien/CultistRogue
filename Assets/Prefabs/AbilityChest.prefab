@@ -278,7 +278,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 2189
+  m_VersionIndex: 2195
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -1452,7 +1452,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 3120
+  m_VersionIndex: 3126
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -1841,7 +1841,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 1715
+  m_VersionIndex: 1721
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -3132,7 +3132,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 2480
+  m_VersionIndex: 2486
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -3255,6 +3255,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 643b21981d2d38d47a616ac6edc3844b, type: 2}
   - {fileID: 11400000, guid: 252f154df9a018241b41d669ae94f239, type: 2}
   - {fileID: 11400000, guid: b278b4231fcb2434297c62a0c7569a8c, type: 2}
+  - {fileID: 11400000, guid: ebb1c49b5d71af1428e5f43d20d420ff, type: 2}
   pickupPrefab: {fileID: 2854083587875259358, guid: 3b6082e5cf514cd48959d2553a219b54, type: 3}
   spawnPos: {fileID: 8097671744053820254}
 --- !u!95 &2379972833799694128

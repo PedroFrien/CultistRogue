@@ -2,7 +2,7 @@ using UnityEngine;
 
 
 [CreateAssetMenu(fileName = "BaseAbility", menuName = "Abilities/Base Ability")]
-public class BaseAbility : ScriptableObject
+public abstract class BaseAbility : ScriptableObject
 {
     public bool upgraded = false;
 
@@ -15,7 +15,14 @@ public class BaseAbility : ScriptableObject
     public float manaCost;
    
 
-    public virtual void OnActivate() { }
+    public void OnActivate() 
+    {
+        if (onCooldown) return;
+        Activate();
+        onCooldown = true;
+    }
+
+    public abstract void Activate();
 
     public virtual void OnStart() { }
 

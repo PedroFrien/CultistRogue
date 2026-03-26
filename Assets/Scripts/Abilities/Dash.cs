@@ -21,9 +21,8 @@ public class Dash : BaseAbility
         controller = GameObject.FindFirstObjectByType<FPController>();
     }
 
-    public override void OnActivate()
+    public override void Activate()
     {
-        if (onCooldown) return;
 
         if (!upgraded)
         {
