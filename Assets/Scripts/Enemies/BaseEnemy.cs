@@ -4,6 +4,7 @@ using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine.Rendering;
 using UnityEditor;
+using System.Linq;
 
 public abstract class BaseEnemy : BaseCharacter
 {
@@ -83,8 +84,12 @@ public abstract class BaseEnemy : BaseCharacter
 
 
         patrolPointIndex = 0;
-        currentPatrolPoint = patrolPoints[patrolPointIndex];
-        movementCoroutine = StartCoroutine(MoveToPos(currentPatrolPoint));
+        if (patrolPoints.Length > 0)
+        {
+            currentPatrolPoint = patrolPoints[patrolPointIndex];
+            movementCoroutine = StartCoroutine(MoveToPos(currentPatrolPoint));
+        }
+        
 
         animator = GetComponent<Animator>();
 

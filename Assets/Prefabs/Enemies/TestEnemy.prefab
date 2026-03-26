@@ -963,11 +963,7 @@ MonoBehaviour:
     m_Bits: 72
   exclamationPoint: {fileID: 7634256277789160008}
   questionMark: {fileID: 9150531030174994063}
-  patrolPoints:
-  - {x: 29.24, y: 0.08, z: -2.56}
-  - {x: 29.24, y: 0.08, z: 16}
-  - {x: 56.5, y: 0.08, z: 16}
-  - {x: 56.5, y: 0.08, z: -2.56}
+  patrolPoints: []
   gizmoRadius: 0.3
   patrolPointColor: {r: 0, g: 0, b: 1, a: 1}
   selectedPointColor: {r: 1, g: 0, b: 0, a: 1}

@@ -32,4 +32,16 @@ public class Crossbow : BaseGun
 
         
     }
+
+    private void Update()
+    {
+        if (currentAmmo <= 0)
+        {
+            visualArrow.enabled = false;
+        }
+        if (currentAmmo > 0 || reloading)
+        {
+            visualArrow.enabled = true;
+        }
+    }
 }

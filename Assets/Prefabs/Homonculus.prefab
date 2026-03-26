@@ -3825,7 +3825,7 @@ MonoBehaviour:
   nearEnemy: {fileID: 0}
   speed: 5
   explosionDamage: 100
-  explosionRange: 10
+  explosionRange: 5
   damagableObjects:
     serializedVersion: 2
     m_Bits: 192

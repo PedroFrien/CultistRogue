@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using static UnityEditor.PlayerSettings;
 
-public class Homonculus : MonoBehaviour
+public class Homunculus : MonoBehaviour
 {
     private NavMeshAgent agent;
 
@@ -12,9 +12,9 @@ public class Homonculus : MonoBehaviour
 
 
     
-    [SerializeField] private float speed;
+    [SerializeField] public float speed;
     [SerializeField] private float explosionDamage;
-    [SerializeField] private float explosionRange;
+    [SerializeField] public float explosionRange;
 
 
     [SerializeField] private LayerMask damagableObjects;
@@ -29,6 +29,8 @@ public class Homonculus : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
 
         agent.speed = speed;
+
+        
     }
 
     // Update is called once per frame
@@ -82,6 +84,7 @@ public class Homonculus : MonoBehaviour
     private void Explode()
     {
         Instantiate(explosionVFX, transform.position, Quaternion.identity);
+        FindFirstObjectByType<AudioManager>().PlayWorldSound("Explosion", transform.position, gameObject, explosionRange * 4);
 
         Collider[] hitColliders = Physics.OverlapSphere(transform.position, explosionRange, damagableObjects);
 

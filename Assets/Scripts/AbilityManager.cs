@@ -139,16 +139,25 @@ public class AbilityManager : MonoBehaviour
         yield return new WaitForSeconds(manaRegenDelay);
 
         float manaToRestore = lastAbility.manaCost;
-        float elapsed = 0f;
-        float regenRate = manaToRestore / duration; // mana per second
+        float manaRestored = 0f;
+        //float elapsed = 0f;
+        //float regenRate = manaToRestore / duration; // mana per second
 
-        while (elapsed < duration)
+        //while (elapsed < duration)
+        //{
+        //    float delta = regenRate * Time.deltaTime;
+        //    elapsed += Time.deltaTime;
+
+        //    mana = Mathf.Clamp(mana + delta, 0, maxMana);
+        //    manaBar.ChangeValue(mana / maxMana);
+
+        //    yield return null;
+        //}
+
+        while (manaRestored < manaToRestore)
         {
-            float delta = regenRate * Time.deltaTime;
-            elapsed += Time.deltaTime;
-
-            mana = Mathf.Clamp(mana + delta, 0, maxMana);
-            manaBar.ChangeValue(mana / maxMana);
+            GainMana(manaRegenSpeed * Time.deltaTime);
+            manaRestored += manaRegenSpeed * Time.deltaTime;
 
             yield return null;
         }

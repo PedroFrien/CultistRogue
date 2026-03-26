@@ -16,6 +16,6 @@ MonoBehaviour:
   onCooldown: 0
   abilityIcon: {fileID: 21300000, guid: 85ddac1e94e5b334298552dd9e7b0e69, type: 3}
   cooldown: 30
-  cooldownTime: 30
+  cooldownTime: 0
   manaCost: 50
-  homunculus: {fileID: 8000690358165555677, guid: 5daa8f682d045ca459cc89db02a6077d, type: 3}
+  homunculus: {fileID: 4896580567734753431, guid: 5daa8f682d045ca459cc89db02a6077d, type: 3}

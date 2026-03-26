@@ -26,18 +26,23 @@ public class Arrow : BaseProjectile
         }
         else
         {
-            Rigidbody rb = GetComponent<Rigidbody>();
-            rb.linearVelocity = Vector3.zero;
-            rb.angularVelocity = Vector3.zero;
-            rb.isKinematic = true;
+            if (collision.gameObject.GetComponent<BaseCharacter>() == null)
+            {
+                Rigidbody rb = GetComponent<Rigidbody>();
+                rb.linearVelocity = Vector3.zero;
+                rb.angularVelocity = Vector3.zero;
+                rb.isKinematic = true;
 
 
-            ContactPoint contact = collision.GetContact(0);
-            transform.rotation = Quaternion.LookRotation(-contact.normal);
+                ContactPoint contact = collision.GetContact(0);
+                Debug.Log(collision);
+                transform.rotation = Quaternion.LookRotation(-contact.normal);
 
-            transform.SetParent(collision.transform);
+                transform.SetParent(collision.transform);
 
-            damageActive = false;
+                damageActive = false;
+            }
+            
         }
     }
 
