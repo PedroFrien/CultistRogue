@@ -31,7 +31,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -4.87, y: 0.79, z: 0.78}
-  m_LocalScale: {x: 0.78787, y: 0.15450257, z: 0.78787}
+  m_LocalScale: {x: 0.51627547, y: 0.101242445, z: 0.51627547}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -154,3 +154,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AbilityPickup
   ability: {fileID: 11400000, guid: 252f154df9a018241b41d669ae94f239, type: 2}
+  instantiatedAbility: {fileID: 0}

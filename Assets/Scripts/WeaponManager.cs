@@ -34,7 +34,7 @@ public class WeaponManager : MonoBehaviour
 
 
                 spawnedWeapon.transform.parent = weaponHoldPos;
-                spawnedWeapon.transform.localPosition += spawnedWeapon.offsetPos;
+                spawnedWeapon.transform.localPosition = spawnedWeapon.offsetPos;
                 spawnedWeapon.transform.localRotation = Quaternion.Euler(spawnedWeapon.rotateOffsetPos);
 
 
@@ -154,6 +154,9 @@ public class WeaponManager : MonoBehaviour
 
 
         weapon.transform.parent = weaponHoldPos;
+        weapon.transform.parent = weaponHoldPos;
+        weapon.transform.localPosition = Vector3.zero;      
+        weapon.transform.localRotation = Quaternion.identity;
         weapon.transform.localPosition = weapon.offsetPos;
         weapon.transform.localRotation = Quaternion.Euler(weapon.rotateOffsetPos);
         weapon.GetComponent<Rigidbody>().isKinematic = true;

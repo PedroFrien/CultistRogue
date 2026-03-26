@@ -30,7 +30,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -8.67686, y: 0.526, z: -12.28772}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.65528, y: 0.65528, z: 0.65528}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2590072290332540844}
@@ -73,15 +73,16 @@ MonoBehaviour:
   damage: 100
   offsetPos: {x: 0.025, y: -0.198, z: 0.129}
   rotateOffsetPos: {x: 0, y: 0, z: 0}
+  attackInterval: 0.5
+  canAttack: 1
   noiseRadius: 0
+  equipped: 0
   range: 7.5
   mainCamera: {fileID: 0}
   animator: {fileID: 0}
   meleeMask:
     serializedVersion: 2
     m_Bits: 136
-  attackInterval: 0.5
-  canAttack: 1
 --- !u!54 &-1311249362281384293
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -857,7 +858,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 3775
+  m_VersionIndex: 3925
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []

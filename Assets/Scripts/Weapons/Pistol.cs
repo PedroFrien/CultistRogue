@@ -21,7 +21,7 @@ public class Pistol : BaseGun
         //animator.SetBool("Shoot", true);
 
         FindFirstObjectByType<AudioManager>().PlayWorldSound("Gunshot", transform.position, gameObject, noiseRadius);
-        animator.SetTrigger("Shoot");
+        //animator.SetTrigger("Shoot");
 
         
 

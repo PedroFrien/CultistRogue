@@ -40,9 +40,10 @@ public abstract class BaseGun : BaseWeapon
 
     public override void Use()
     {
-        if (reloading || !equipped || !canAttack) return;
+        if (reloading || !equipped || !canAttack || currentAmmo <= 0) return;
         canAttack = false;
 
+        animator.SetTrigger("Shoot");
         Attack();
 
         Invoke("AttackReset", attackInterval);

@@ -65,7 +65,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.65528, y: 0.65528, z: 0.65528}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8933254005371711835}
@@ -523,7 +523,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 5520
+  m_VersionIndex: 5616
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -624,18 +624,20 @@ MonoBehaviour:
   damage: 5
   offsetPos: {x: 0, y: 0, z: 0}
   rotateOffsetPos: {x: 0, y: 0, z: 0}
+  attackInterval: 0
+  canAttack: 1
   noiseRadius: 90
-  currentAmmo: 6
-  magSize: 6
-  reserveAmmo: 12
-  fireInterval: 2
+  equipped: 0
+  currentAmmo: 99
+  magSize: 99
+  reserveAmmo: 99
   range: 99
-  reloadTime: 3
+  reloadTime: 1.5
   FirePoint: {fileID: 8933254005371711835}
   bulletTrail: {fileID: 3635723773914996350, guid: e87bf255792893548951b98f50da920f, type: 3}
-  trailDuration: 0
+  trailDuration: 1
   decal: {fileID: 6349733149518312644, guid: f3ff3910f36cdaf4cad8d811d73e7ba3, type: 3}
-  decalDuration: 0
+  decalDuration: 20
   mainCamera: {fileID: 0}
   animator: {fileID: 0}
   hitLayer:
