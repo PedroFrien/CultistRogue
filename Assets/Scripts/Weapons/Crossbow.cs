@@ -10,6 +10,7 @@ public class Crossbow : BaseGun
     public override void Attack()
     {
         animator.SetTrigger("Shoot");
+        FindFirstObjectByType<AudioManager>().PlaySound("CrossbowShot", transform.position, gameObject);
 
         BaseProjectile spawnedArrow = Instantiate(arrow, FirePoint.position, FirePoint.rotation);
 

@@ -2986,6 +2986,12 @@ MonoBehaviour:
     pitch: 1
     speed: 1
     source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: cc734fa8789fcc74a905b5360d351edb, type: 3}
+    name: CrossbowShot
+    volume: 0.25
+    pitch: 1
+    speed: 1
+    source: {fileID: 0}
   music: []
   effectsSlider: {fileID: 0}
   musicSlider: {fileID: 0}
@@ -30165,11 +30171,7 @@ PrefabInstance:
       objectReference: {fileID: 1001410546}
     - target: {fileID: 484792337811596700, guid: c58bd0a71cca2d14780ee0b38103c68f, type: 3}
       propertyPath: m_VersionIndex
-      value: 7876
-      objectReference: {fileID: 0}
-    - target: {fileID: 1552088242128217948, guid: c58bd0a71cca2d14780ee0b38103c68f, type: 3}
-      propertyPath: m_Layer
-      value: 9
+      value: 7882
       objectReference: {fileID: 0}
     - target: {fileID: 1921312218246358102, guid: c58bd0a71cca2d14780ee0b38103c68f, type: 3}
       propertyPath: m_Mesh
@@ -30177,27 +30179,19 @@ PrefabInstance:
       objectReference: {fileID: 856517341}
     - target: {fileID: 1921312218246358102, guid: c58bd0a71cca2d14780ee0b38103c68f, type: 3}
       propertyPath: m_VersionIndex
-      value: 2117
-      objectReference: {fileID: 0}
-    - target: {fileID: 2694406068051817297, guid: c58bd0a71cca2d14780ee0b38103c68f, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0.695
-      objectReference: {fileID: 0}
-    - target: {fileID: 3760707981043234010, guid: c58bd0a71cca2d14780ee0b38103c68f, type: 3}
-      propertyPath: m_Layer
-      value: 9
+      value: 2123
       objectReference: {fileID: 0}
     - target: {fileID: 5328752099887504190, guid: c58bd0a71cca2d14780ee0b38103c68f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.95
+      value: -0.526
       objectReference: {fileID: 0}
     - target: {fileID: 5328752099887504190, guid: c58bd0a71cca2d14780ee0b38103c68f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.88
+      value: -0.061
       objectReference: {fileID: 0}
     - target: {fileID: 5328752099887504190, guid: c58bd0a71cca2d14780ee0b38103c68f, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1.289
+      value: 0.533
       objectReference: {fileID: 0}
     - target: {fileID: 5328752099887504190, guid: c58bd0a71cca2d14780ee0b38103c68f, type: 3}
       propertyPath: m_LocalRotation.w
@@ -30231,14 +30225,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Crossbow
       objectReference: {fileID: 0}
-    - target: {fileID: 5578899666937797275, guid: c58bd0a71cca2d14780ee0b38103c68f, type: 3}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 6153987610076767582, guid: c58bd0a71cca2d14780ee0b38103c68f, type: 3}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
     - target: {fileID: 6429119520427852761, guid: c58bd0a71cca2d14780ee0b38103c68f, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -30249,7 +30235,11 @@ PrefabInstance:
       objectReference: {fileID: 856517341}
     - target: {fileID: 7310564889906404799, guid: c58bd0a71cca2d14780ee0b38103c68f, type: 3}
       propertyPath: arrowSpeed
-      value: 30
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 7310564889906404799, guid: c58bd0a71cca2d14780ee0b38103c68f, type: 3}
+      propertyPath: reloadTime
+      value: 2.3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -30454,25 +30444,17 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 2126843484}
-    - target: {fileID: 2414821826610054293, guid: 02aa9524b47b29949ae78510e263b9d9, type: 3}
-      propertyPath: m_Layer
-      value: 8
-      objectReference: {fileID: 0}
     - target: {fileID: 5561819179202654031, guid: 02aa9524b47b29949ae78510e263b9d9, type: 3}
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 2126843484}
     - target: {fileID: 5561819179202654031, guid: 02aa9524b47b29949ae78510e263b9d9, type: 3}
       propertyPath: m_VersionIndex
-      value: 2120
+      value: 2135
       objectReference: {fileID: 0}
     - target: {fileID: 6971432781254699627, guid: 02aa9524b47b29949ae78510e263b9d9, type: 3}
       propertyPath: m_Name
       value: Arrow
-      objectReference: {fileID: 0}
-    - target: {fileID: 6971432781254699627, guid: 02aa9524b47b29949ae78510e263b9d9, type: 3}
-      propertyPath: m_Layer
-      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

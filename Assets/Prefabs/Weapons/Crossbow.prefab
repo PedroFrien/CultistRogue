@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6235107845311445317}
   - component: {fileID: 6429119520427852761}
   - component: {fileID: 8872310673423538620}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Geometry
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1569,7 +1569,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 7873
+  m_VersionIndex: 7879
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -1702,7 +1702,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2694406068051817297}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: FirePoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1718,7 +1718,7 @@ Transform:
   m_GameObject: {fileID: 3760707981043234010}
   serializedVersion: 2
   m_LocalRotation: {x: -0.000000024383382, y: 0.000000014901159, z: -0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 0.004, y: 0.0545, z: 0.555}
+  m_LocalPosition: {x: 0.004, y: 0.0545, z: 0.695}
   m_LocalScale: {x: 0.11605279, y: 0.2702795, z: 0.2702795}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1737,7 +1737,7 @@ GameObject:
   - component: {fileID: 2290193486755655355}
   - component: {fileID: 6595610938391216735}
   - component: {fileID: 5719395852071649631}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Crossbow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1797,7 +1797,7 @@ MonoBehaviour:
     m_Bits: 200
   reloading: 0
   arrow: {fileID: 3660857555847147213, guid: 02aa9524b47b29949ae78510e263b9d9, type: 3}
-  arrowSpeed: 35
+  arrowSpeed: 30
   visualArrow: {fileID: 739957789579889978}
 --- !u!65 &2290193486755655355
 BoxCollider:
@@ -1882,7 +1882,7 @@ GameObject:
   - component: {fileID: 7650218987137207471}
   - component: {fileID: 739957789579889978}
   - component: {fileID: 6837940979799254544}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: CrossbowBolt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2614,7 +2614,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 2114
+  m_VersionIndex: 2120
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []

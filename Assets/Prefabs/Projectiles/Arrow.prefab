@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4163827244812635376}
   - component: {fileID: 914673277551251976}
   - component: {fileID: 5934141916727758752}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Arrow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -746,7 +746,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 2117
+  m_VersionIndex: 2132
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -868,7 +868,7 @@ GameObject:
   - component: {fileID: 3660857555847147213}
   - component: {fileID: 1634515045336836667}
   - component: {fileID: 1203694528720380937}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Arrow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -885,7 +885,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.28051, y: 0.361, z: -2.45312}
-  m_LocalScale: {x: 0.65528, y: 0.65528, z: 1.3369677}
+  m_LocalScale: {x: 0.94484824, y: 0.94484824, z: 1.9277737}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8049984037953545833}
@@ -930,7 +930,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 1
+  m_CollisionDetection: 2
 --- !u!65 &1203694528720380937
 BoxCollider:
   m_ObjectHideFlags: 0
