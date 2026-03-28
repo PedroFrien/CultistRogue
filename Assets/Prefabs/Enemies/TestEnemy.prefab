@@ -1069,7 +1069,7 @@ MonoBehaviour:
   playerInCone: 0
   uprightRate: 1
   crouchDetectRate: 0.5
-  timeToDetect: 120
+  timeToDetect: 160
   detectValue: 0
   playerDetect:
     serializedVersion: 2

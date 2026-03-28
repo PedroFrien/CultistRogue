@@ -331,7 +331,7 @@ public class FPController : MonoBehaviour
         if (CrouchInput == false)
         {
             RaycastHit hit;
-            if (Physics.Raycast(fpCamera.transform.position, Vector3.up, out hit, characterController.height, environmentLayer))
+            if (Physics.Raycast(fpCamera.transform.position, Vector3.up, out hit, characterController.height / 3, environmentLayer))
             {
                 Crouched = true;
                 Debug.Log("Something Overhead");

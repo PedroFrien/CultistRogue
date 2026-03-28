@@ -61,8 +61,11 @@ Material:
     m_Floats:
     - Depth: 1
     - _Depth: 0.72
+    - _Displacement: 0.01
+    - _NormalStrength: 0.657
     - _QueueControl: 0
     - _QueueOffset: 0
+    - _Smoothness: 0.898
     - _Strength: 1.05
     m_Colors:
     - _DeepColor: {r: 0.17452824, g: 0.21960774, b: 0.7882353, a: 0.6862745}
