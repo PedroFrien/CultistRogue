@@ -49,12 +49,12 @@ public class AbilityManager : MonoBehaviour
     }
     public void ActivateAbility(BaseAbility ability)
     {
-        Debug.Log("ActivateAbility called");
+        
         //BaseAbility ability = equippedAbilities[abilityIndex];
 
         if (mana >= ability.manaCost)
         {
-            Debug.Log("Activating Ability");
+            
             ability.OnActivate();
 
             lastAbility = ability;
@@ -72,7 +72,7 @@ public class AbilityManager : MonoBehaviour
             manaRegen = StartCoroutine(RegenerateMana(manaRegenDuration));
         }
 
-        Debug.Log("Can't use ability. No mana!");
+        
         
     }
 

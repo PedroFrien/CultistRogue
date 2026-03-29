@@ -23,11 +23,13 @@ public class Dash : BaseAbility
 
     public override void Activate()
     {
+        controller.VerticalVelocity = 0f;
+        controller.AddVelocity(-controller.CurrentVelocity.magnitude, controller.CurrentVelocity.normalized);
 
         if (!upgraded)
         {
             float storedVelocity = force;
-            controller.VerticalVelocity = 0f;
+            //controller.VerticalVelocity = 0f;
 
             Vector3 lookDir = controller.transform.forward;
 
@@ -36,7 +38,7 @@ public class Dash : BaseAbility
         if (upgraded)
         {
             float storedVelocity = upgradedForce;
-            controller.VerticalVelocity = 0f;
+            //controller.VerticalVelocity = 0f;
 
             Vector3 lookDir = controller.transform.forward;
 

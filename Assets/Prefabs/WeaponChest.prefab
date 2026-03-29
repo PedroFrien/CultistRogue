@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8542369445717638186}
   - component: {fileID: 2314811489566746911}
   - component: {fileID: 2251463345086018842}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Chestlid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -344,7 +344,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7167004924811503216}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: SpawnPos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -379,7 +379,7 @@ GameObject:
   - component: {fileID: 5449665419306578286}
   - component: {fileID: 7887107114502377444}
   - component: {fileID: 5400414763760815212}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Buckle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -713,7 +713,7 @@ GameObject:
   - component: {fileID: 4261347958019358423}
   - component: {fileID: 2048092354173869136}
   - component: {fileID: 3779566570940175706}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Gun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1304,7 +1304,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3378117926939237859}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: LidPivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1339,7 +1339,7 @@ GameObject:
   - component: {fileID: 134877750851606291}
   - component: {fileID: 3313386078402212125}
   - component: {fileID: 3940708767698946548}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1455,7 +1455,7 @@ GameObject:
   - component: {fileID: 542408573918268274}
   - component: {fileID: 1271210173398351411}
   - component: {fileID: 6579765442386855948}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: WeaponChest
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -296,7 +296,7 @@ public class FPController : MonoBehaviour
 
     public void AddVelocity(float force, Vector3 dir)
     {
-        float storedVelocity = DashBase;
+        float storedVelocity = force;
      
         CurrentVelocity = CurrentVelocity + (dir.normalized * storedVelocity);
     }

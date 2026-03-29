@@ -23,6 +23,7 @@ public class SuperJump : BaseAbility
 
         controller = FindFirstObjectByType<FPController>();
 
+        controller.VerticalVelocity = 0f;
 
         if (!upgraded)
         {

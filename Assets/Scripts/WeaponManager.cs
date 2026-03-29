@@ -130,6 +130,7 @@ public class WeaponManager : MonoBehaviour
 
     public void ReloadWeapon()
     {
+        if (currentWeapon == null) return;
         BaseGun gun = currentWeapon.GetComponent<BaseGun>();
 
         if (gun != null)
