@@ -25,7 +25,7 @@ public class PlayerHealth : BaseCharacter
 
         Debug.Log(CurrentHealth);
 
-        cameraShake.ShakeCamera(1f, 1f);
+        cameraShake.ShakeCamera(1.5f, 1.3f);
 
 
         if (CurrentHealth <= 0 )
