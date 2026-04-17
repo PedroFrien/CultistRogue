@@ -133,6 +133,7 @@ public class FPController : MonoBehaviour
 
     [Header("Ability Activation")]
     [SerializeField] private float slowTime = .3f;
+    private bool wheelOpen = false;
 
 
 
@@ -181,6 +182,8 @@ public class FPController : MonoBehaviour
         initialCameraPos = fpCamera.transform.localPosition;
     }
 
+    
+
     private void Update()
     {
         if (MovementEnabled)
@@ -226,13 +229,16 @@ public class FPController : MonoBehaviour
 
     public void Attack()
     {
-        weaponManager.UseWeapon();
+        if (wheelOpen == false) weaponManager.UseWeapon();
+        
     }
 
 
     public void OpenWheel()
     {
         if (gameManager.paused) return;
+
+        wheelOpen = true;
 
         abilityWheel.SetActive(true);
         abilityWheel.GetComponent<Animator>().SetBool("Active", true);
@@ -248,6 +254,8 @@ public class FPController : MonoBehaviour
     public void CloseWheel()
     {
         if (gameManager.paused) return;
+
+        wheelOpen = false;
 
         abilityWheel.GetComponent<AbilityWheel>().ActivateHoveredAbility();
 

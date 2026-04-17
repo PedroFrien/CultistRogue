@@ -32,6 +32,7 @@ public abstract class BaseEnemy : BaseCharacter
 
     public Healthbar exclamationPoint;
     public GameObject questionMark;
+    //public Transform spineTransform;
 
     
 
@@ -89,11 +90,20 @@ public abstract class BaseEnemy : BaseCharacter
             currentPatrolPoint = patrolPoints[patrolPointIndex];
             movementCoroutine = StartCoroutine(MoveToPos(currentPatrolPoint));
         }
-        
 
-        animator = GetComponent<Animator>();
 
         playerCon = player.GetComponent<FPController>();
+
+
+        //animator = GetComponent<Animator>();
+        //if (animator == null)
+        //{
+        //    animator = GetComponentInChildren<Animator>();
+        //}
+
+        animator = GetComponentInChildren<Animator>();
+
+
     }
 
 
@@ -110,6 +120,15 @@ public abstract class BaseEnemy : BaseCharacter
             movementCoroutine = StartCoroutine(MoveToPos(manualPos));
         }
 
+        if (agent.speed > 0)
+        {
+            animator.SetBool("Moving", true);
+        }
+        else
+        {
+            animator.SetBool("Moving", false);
+        }
+
 
         if (shooting)
         {
@@ -120,6 +139,8 @@ public abstract class BaseEnemy : BaseCharacter
 
         if (Chasing == true)
         {
+            animator.SetBool("Running", true);
+
             questionMark.SetActive(false);
 
             if (Vector3.Distance(transform.position, player.transform.position) <= range && !shooting && playerVisible)
@@ -142,6 +163,10 @@ public abstract class BaseEnemy : BaseCharacter
                 }
             }
         }
+        else
+        {
+            animator.SetBool("Running", false);
+        }
 
         if (playerInCone)
         {
@@ -153,7 +178,9 @@ public abstract class BaseEnemy : BaseCharacter
         }
 
         questionMark.SetActive(Investigating);
+
         
+
 
     }
 

@@ -21,8 +21,13 @@ public class WeaponManager : MonoBehaviour
     //{
 
     //}
+
+    [SerializeField] private Animator playerUI;
+    private CameraShake cameraShake;
     public void Start()
     {
+        cameraShake = FindFirstObjectByType<CameraShake>();
+
         heldWeapons.Clear();
 
 
@@ -66,7 +71,10 @@ public class WeaponManager : MonoBehaviour
         if (currentWeapon != null)
         {
             BaseGun potentialGun = currentWeapon.GetComponent<BaseGun>();
+
             if (potentialGun != null && potentialGun.reloading == true) return;
+
+            
         }
         
         
@@ -100,6 +108,10 @@ public class WeaponManager : MonoBehaviour
         {
             currentWeapon.Use();
             GunUpdate();
+            if (currentWeapon.GetComponent<BaseGun>() != null)
+            {
+                cameraShake.ShakeCamera(.3f, .3f);
+            }
         }
 
         
@@ -115,15 +127,18 @@ public class WeaponManager : MonoBehaviour
             {
                 ammoCount.gameObject.SetActive(true);
                 ammoCount.text = gun.currentAmmo + " / " + gun.reserveAmmo;
+                playerUI.SetBool("HoldingGun", true);
             }
             else
             {
                 ammoCount.gameObject.SetActive(false);
+                playerUI.SetBool("HoldingGun", false);
             }
         }
         else
         {
             ammoCount.gameObject.SetActive(false);
+            playerUI.SetBool("HoldingGun", false);
         }
         
     }
@@ -212,7 +227,7 @@ public class WeaponManager : MonoBehaviour
 
         SwapWeapon(currentWeaponIndex);
 
-
+        GunUpdate();
 
 
     }

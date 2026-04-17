@@ -7,10 +7,13 @@ public class PlayerHealth : BaseCharacter
 
     [SerializeField] private Healthbar healthBar;
 
+    private CameraShake cameraShake;
+
     private void Start()
     {
         CurrentHealth = MaxHealth;
         gameManager = FindFirstObjectByType<GameManager>();
+        cameraShake = FindFirstObjectByType<CameraShake>();
     }
     public override void TakeDamage(float damage)
     {
@@ -21,6 +24,8 @@ public class PlayerHealth : BaseCharacter
         healthBar.ChangeValue(healthValue);
 
         Debug.Log(CurrentHealth);
+
+        cameraShake.ShakeCamera(1f, 1f);
 
 
         if (CurrentHealth <= 0 )
