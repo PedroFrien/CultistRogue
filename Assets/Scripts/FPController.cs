@@ -23,7 +23,6 @@ public class FPController : MonoBehaviour
 
     public float MaxSpeed => Crouched ? MaxCrouchSpeed : MaxUprightSpeed;
 
- 
 
 
 
@@ -511,6 +510,9 @@ public class FPController : MonoBehaviour
             selectedInteractable = null;
             cardPopup.gameObject.SetActive(false);
         }
+
+
+        
     }
 
     #endregion
