@@ -26,7 +26,7 @@ public class Arrow : BaseProjectile
         }
         else
         {
-            if (collision.gameObject.GetComponent<BaseCharacter>() == null)
+            if (collision.gameObject.GetComponent<BaseCharacter>() == null && collision.gameObject.layer != 11)
             {
                 Rigidbody rb = GetComponent<Rigidbody>();
                 rb.linearVelocity = Vector3.zero;

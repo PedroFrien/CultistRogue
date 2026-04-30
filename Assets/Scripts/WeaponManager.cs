@@ -104,11 +104,11 @@ public class WeaponManager : MonoBehaviour
         {
             Debug.Log("No Weapon Equipped");
         }
-        else
+        if (currentWeapon != null && currentWeapon.canAttack)
         {
             currentWeapon.Use();
             GunUpdate();
-            if (currentWeapon.GetComponent<BaseGun>() != null)
+            if (currentWeapon.GetComponent<BaseGun>() != null && currentWeapon.canAttack == true && currentWeapon.GetComponent<BaseGun>().currentAmmo > 0 )
             {
                 cameraShake.ShakeCamera(.3f, .3f);
             }

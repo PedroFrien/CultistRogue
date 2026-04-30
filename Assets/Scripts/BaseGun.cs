@@ -47,10 +47,16 @@ public abstract class BaseGun : BaseWeapon
         Attack();
 
         Invoke("AttackReset", attackInterval);
+
+        
     }
     public virtual void DecreaseAmmo()
     {
         currentAmmo -= 1;
+        if (currentAmmo <= 0)
+        {
+            canAttack = false;
+        }
     }
 
     public virtual void StartReload()

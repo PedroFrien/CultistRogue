@@ -1729,7 +1729,7 @@ GameObject:
   - component: {fileID: 5247890130035953951}
   - component: {fileID: 7456666521741176428}
   - component: {fileID: 3373900725067691705}
-  m_Layer: 7
+  m_Layer: 11
   m_Name: BackstabHitbox
   m_TagString: Backstab
   m_Icon: {fileID: 0}

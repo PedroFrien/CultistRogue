@@ -1268,10 +1268,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FPController
   Acceleration: 100
-  WalkSpeed: 3.5
-  SprintSpeed: 8
-  CrouchWalkSpeed: 1
-  CrouchSprintSpeed: 3
+  WalkSpeed: 2.5
+  SprintSpeed: 6
+  CrouchWalkSpeed: 0.75
+  CrouchSprintSpeed: 1.5
   environmentLayer:
     serializedVersion: 2
     m_Bits: 8
@@ -8066,8 +8066,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9108575901568588595}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.04796352, y: 0.024404038, z: -0.0011722031, w: 0.99855024}
-  m_LocalPosition: {x: 23.23191, y: -0.10944009, z: 41.054527}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -4.3100004, y: 0.76236, z: -1.9499998}
   m_LocalScale: {x: 0.65528, y: 0.65528, z: 0.65528}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -8106,7 +8106,7 @@ Camera:
     height: 1
   near clip plane: 0.1
   far clip plane: 1000
-  field of view: 60.172634
+  field of view: 73.061455
   orthographic: 0
   orthographic size: 5
   m_Depth: -1

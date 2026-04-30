@@ -26,7 +26,7 @@ public class Crossbow : BaseGun
 
     public override void StartReload()
     {
-
+        canAttack = false;
         visualArrow.enabled = true;
         StartCoroutine(Reload());
 
