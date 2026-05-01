@@ -6,7 +6,7 @@ public class DeathZone : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        PlayerHealth player = FindFirstObjectByType<PlayerHealth>();
+        PlayerHealth player = other.GetComponent<PlayerHealth>();
         if (player != null)
         {
             player.Die();
