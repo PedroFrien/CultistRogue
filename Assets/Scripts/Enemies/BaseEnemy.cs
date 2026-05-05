@@ -77,6 +77,11 @@ public abstract class BaseEnemy : BaseCharacter
     public float xFOV;
     public float yFOV;
 
+    [Header("Chasing")]
+    public float timeToEndSearch;
+    public bool endingSearch;
+    public Coroutine EndSearchCor;
+
 
 
 
@@ -86,6 +91,7 @@ public abstract class BaseEnemy : BaseCharacter
         agent.speed = normalSpeed;
         player = GameObject.FindFirstObjectByType<FPController>().gameObject;
         audioManager = FindFirstObjectByType<AudioManager>();
+
 
 
         patrolPointIndex = 0;
@@ -152,10 +158,21 @@ public abstract class BaseEnemy : BaseCharacter
                 shootingCoroutine = StartCoroutine(Shoot());
             }
 
-
-            else if (playerVisible && !shooting)
+            if (playerVisible && !shooting)
             {
+                if (EndSearchCor != null)
+                {
+                    StopCoroutine(EndSearchCor);
+                    EndSearchCor = null;
+                }
+                // Update last seen and chase
                 lastSeenPos = player.transform.position;
+                agent.SetDestination(lastSeenPos);
+                agent.speed = sprintSpeed;
+            }
+            else if (endingSearch)
+            {
+                // Player not visible but we're still searching
                 agent.SetDestination(lastSeenPos);
                 agent.speed = sprintSpeed;
             }
@@ -163,7 +180,7 @@ public abstract class BaseEnemy : BaseCharacter
             {
                 if (Vector3.Distance(transform.position, lastSeenPos) <= 2f && !shooting)
                 {
-                    StartCoroutine(ResumePatrol());
+                    EndSearchCor = StartCoroutine(EndSearch());
                 }
             }
         }
@@ -183,9 +200,13 @@ public abstract class BaseEnemy : BaseCharacter
 
         questionMark.SetActive(Investigating);
 
-        
+    }
 
+    public IEnumerator EndSearch()
+    {
+        yield return new WaitForSeconds(timeToEndSearch);
 
+        StartCoroutine(ResumePatrol());
     }
 
     public void IncrementPopup(float value)
@@ -208,16 +229,19 @@ public abstract class BaseEnemy : BaseCharacter
     {
         if (Chasing) return;
 
+        if (movementCoroutine != null) StopCoroutine(movementCoroutine);
+        if (shootingCoroutine != null) StopCoroutine(shootingCoroutine);
+        if (EndSearchCor != null) { StopCoroutine(EndSearchCor); EndSearchCor = null; }
+
         audioManager.PlaySound("Spotted", transform.position, gameObject);
         audioManager.FadeToMusic("Chase");
         Debug.Log("Starting Chase");
         exclamationPoint.ChangeValue(0);
-        StopAllCoroutines();
+        
 
         Investigating = false;
 
         Chasing = true;
-
 
     }
 

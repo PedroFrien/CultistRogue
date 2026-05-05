@@ -218,7 +218,12 @@ public class AudioManager : MonoBehaviour
 
     public void FadeToMusic(string name, float fadeDuration = 1f)
     {
-        StartCoroutine(CrossfadeMusic(name, fadeDuration));
+        if (currentMusic.name != name)
+        {
+            StartCoroutine(CrossfadeMusic(name, fadeDuration));
+        }
+
+        
     }
 
     private IEnumerator CrossfadeMusic(string name, float fadeDuration)

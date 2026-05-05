@@ -3275,6 +3275,7 @@ MonoBehaviour:
     m_Bits: 72
   exclamationPoint: {fileID: 5849136482507333300}
   questionMark: {fileID: 8599799122199486258}
+  audioManager: {fileID: 0}
   patrolPoints: []
   gizmoRadius: 0.3
   patrolPointColor: {r: 0, g: 0, b: 1, a: 1}
@@ -3296,6 +3297,8 @@ MonoBehaviour:
   visionRange: 20
   xFOV: 90
   yFOV: 0
+  timeToEndSearch: 3.5
+  endingSearch: 0
 --- !u!1 &9066436628666526140
 GameObject:
   m_ObjectHideFlags: 0

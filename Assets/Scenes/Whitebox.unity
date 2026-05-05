@@ -22991,7 +22991,7 @@ PrefabInstance:
       objectReference: {fileID: 1381408601}
     - target: {fileID: 718584012737510018, guid: 0121f65b66cf6064e9090b91c1e9f5f9, type: 3}
       propertyPath: m_VersionIndex
-      value: 5643
+      value: 5649
       objectReference: {fileID: 0}
     - target: {fileID: 4027219444909127172, guid: 0121f65b66cf6064e9090b91c1e9f5f9, type: 3}
       propertyPath: m_Mesh
@@ -97974,7 +97974,7 @@ PrefabInstance:
       objectReference: {fileID: 260802974}
     - target: {fileID: 718584012737510018, guid: 0121f65b66cf6064e9090b91c1e9f5f9, type: 3}
       propertyPath: m_VersionIndex
-      value: 5637
+      value: 5643
       objectReference: {fileID: 0}
     - target: {fileID: 4027219444909127172, guid: 0121f65b66cf6064e9090b91c1e9f5f9, type: 3}
       propertyPath: m_Mesh
@@ -128415,7 +128415,7 @@ PrefabInstance:
       objectReference: {fileID: 2099519583}
     - target: {fileID: 718584012737510018, guid: 0121f65b66cf6064e9090b91c1e9f5f9, type: 3}
       propertyPath: m_VersionIndex
-      value: 5676
+      value: 5682
       objectReference: {fileID: 0}
     - target: {fileID: 4027219444909127172, guid: 0121f65b66cf6064e9090b91c1e9f5f9, type: 3}
       propertyPath: m_Mesh
@@ -165880,6 +165880,7 @@ MonoBehaviour:
     m_Bits: 72
   exclamationPoint: {fileID: 3725958489627207798}
   questionMark: {fileID: 1567695334331558384}
+  audioManager: {fileID: 0}
   patrolPoints:
   - {x: 12.2, y: 9.77, z: 19.8}
   - {x: 9.7, y: 9.77, z: 21.7}
@@ -165907,6 +165908,8 @@ MonoBehaviour:
   visionRange: 20
   xFOV: 90
   yFOV: 0
+  timeToEndSearch: 0
+  endingSearch: 0
 --- !u!1 &3107137497565591725
 GameObject:
   m_ObjectHideFlags: 0
