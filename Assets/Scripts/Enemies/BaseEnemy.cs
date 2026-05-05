@@ -84,6 +84,11 @@ public abstract class BaseEnemy : BaseCharacter
     public float alertRadius;
     public bool alerted;
 
+    [Header("Ragdoll")]
+    public GameObject[] joints;
+    public float despawnTime;
+    public bool dead = false;
+
 
 
 
@@ -93,6 +98,11 @@ public abstract class BaseEnemy : BaseCharacter
         agent.speed = normalSpeed;
         player = GameObject.FindFirstObjectByType<FPController>().gameObject;
         audioManager = FindFirstObjectByType<AudioManager>();
+
+        //foreach (GameObject joint in joints)
+        //{
+        //    joint.GetComponent<Rigidbody>().isKinematic = true;
+        //}
 
 
 
@@ -123,6 +133,8 @@ public abstract class BaseEnemy : BaseCharacter
 
     public virtual void StateUpdate()
     {
+        if (dead) return;
+        
         if (move == true)
         {
             move = false;
@@ -492,7 +504,9 @@ public abstract class BaseEnemy : BaseCharacter
         {
             Chasing = false;
             EnemyChasingCheck();
-            Die();
+            animator.enabled = false;
+            StopAllCoroutines();
+            StartCoroutine(DelayedDeath());
         }
         else
         {
@@ -500,6 +514,28 @@ public abstract class BaseEnemy : BaseCharacter
         }
 
             
+    }
+
+    public IEnumerator DelayedDeath()
+    {
+        dead = true;
+        animator.enabled = false;
+        
+        agent.enabled = false;
+
+        //foreach (GameObject joint in joints)
+        //{
+        //    joint.GetComponent<Rigidbody>().isKinematic = false;
+        //}
+
+        yield return new WaitForSeconds(despawnTime);
+
+        Die();
+
+
+
+
+
     }
 
 
