@@ -32,6 +32,9 @@ public abstract class BaseEnemy : BaseCharacter
 
     public Healthbar exclamationPoint;
     public GameObject questionMark;
+
+
+    public AudioManager audioManager;
     //public Transform spineTransform;
 
     
@@ -82,6 +85,7 @@ public abstract class BaseEnemy : BaseCharacter
         agent = GetComponent<NavMeshAgent>();
         agent.speed = normalSpeed;
         player = GameObject.FindFirstObjectByType<FPController>().gameObject;
+        audioManager = FindFirstObjectByType<AudioManager>();
 
 
         patrolPointIndex = 0;
@@ -204,7 +208,8 @@ public abstract class BaseEnemy : BaseCharacter
     {
         if (Chasing) return;
 
-        FindFirstObjectByType<AudioManager>().PlaySound("Spotted", transform.position, gameObject);
+        audioManager.PlaySound("Spotted", transform.position, gameObject);
+        audioManager.FadeToMusic("Chase");
         Debug.Log("Starting Chase");
         exclamationPoint.ChangeValue(0);
         StopAllCoroutines();
@@ -215,6 +220,8 @@ public abstract class BaseEnemy : BaseCharacter
 
 
     }
+
+    
 
     public IEnumerator MoveToPos(Vector3 pos)
     {
@@ -280,6 +287,30 @@ public abstract class BaseEnemy : BaseCharacter
 
         if (movementCoroutine != null) StopCoroutine(movementCoroutine);
         movementCoroutine = StartCoroutine(MoveToPos(currentPatrolPoint));
+
+        EnemyChasingCheck();
+
+    }
+
+    public void EnemyChasingCheck()
+    {
+        Debug.Log("Enemy Chasing Check called");
+        BaseEnemy[] enemies = FindObjectsByType<BaseEnemy>(sortMode: FindObjectsSortMode.None);
+        bool noEnemiesChasing = true;
+        foreach (BaseEnemy enemy in enemies)
+        {
+            if (enemy.Chasing == true)
+            {
+                noEnemiesChasing = false;
+            }
+        }
+        if (noEnemiesChasing)
+        {
+            Debug.Log("Attempting to fade back to ambient");
+            audioManager.FadeToMusic("Ambient");
+        }
+
+
     }
 
     public bool PlayerInLOS()
@@ -403,10 +434,16 @@ public abstract class BaseEnemy : BaseCharacter
         CurrentHealth -= damageTaken;
         if (CurrentHealth <= 0)
         {
+            Chasing = false;
+            EnemyChasingCheck();
             Die();
         }
+        else
+        {
+            StartChase();
+        }
 
-        StartChase();
+            
     }
 
 

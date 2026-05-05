@@ -2725,7 +2725,7 @@ MonoBehaviour:
     source: {fileID: 0}
   - clip: {fileID: 8300000, guid: cc734fa8789fcc74a905b5360d351edb, type: 3}
     name: CrossbowShot
-    volume: 0.25
+    volume: 1.98
     pitch: 1
     speed: 1
     source: {fileID: 0}
@@ -2735,7 +2735,19 @@ MonoBehaviour:
     pitch: 1
     speed: 1
     source: {fileID: 0}
-  music: []
+  music:
+  - clip: {fileID: 8300000, guid: a38986e7a9d3b6045aa49155340fcdd3, type: 3}
+    name: Ambient
+    volume: 0.05
+    pitch: 1
+    speed: 1
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: d8553da410dffce4999319d00736f827, type: 3}
+    name: Chase
+    volume: 0.25
+    pitch: 1
+    speed: 1
+    source: {fileID: 0}
   effectsSlider: {fileID: 0}
   musicSlider: {fileID: 0}
   environmentLayer:

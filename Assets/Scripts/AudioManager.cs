@@ -40,6 +40,7 @@ public class AudioManager : MonoBehaviour
 
     public static AudioManager instance;
     private Sound currentMusic;
+    private AudioSource currentMusicSource;
 
     [SerializeField] private Slider effectsSlider;
     [SerializeField] private Slider musicSlider;
@@ -73,6 +74,8 @@ public class AudioManager : MonoBehaviour
             m.source.volume = m.volume * musicVolume * (musicMute ? 0 : 1);
             m.source.loop = true;
         }
+
+        PlayBackgroundMusic("Ambient");
     }
 
     // Update effects volume for all sound effects
@@ -211,6 +214,54 @@ public class AudioManager : MonoBehaviour
         {
             PlayBackgroundMusic(music[0].name);
         }
+    }
+
+    public void FadeToMusic(string name, float fadeDuration = 1f)
+    {
+        StartCoroutine(CrossfadeMusic(name, fadeDuration));
+    }
+
+    private IEnumerator CrossfadeMusic(string name, float fadeDuration)
+    {
+        Sound nextMusic = Array.Find(music, track => track.name == name);
+        if (nextMusic == null || musicMute) yield break;
+
+        // Give the incoming track a second AudioSource so both can play simultaneously
+        AudioSource nextSource = gameObject.AddComponent<AudioSource>();
+        nextSource.clip = nextMusic.clip;
+        nextSource.loop = true;
+        nextSource.volume = 0f;
+        nextSource.Play();
+
+        Sound outgoing = currentMusic;
+        float startVolumeOut = outgoing != null ? outgoing.source.volume : 0f;
+        float targetVolumeIn = nextMusic.volume * musicVolume;
+
+        float elapsed = 0f;
+        while (elapsed < fadeDuration)
+        {
+            elapsed += Time.deltaTime;
+            float t = Mathf.Clamp01(elapsed / fadeDuration);
+
+            if (outgoing != null)
+                outgoing.source.volume = Mathf.Lerp(startVolumeOut, 0f, t);
+
+            nextSource.volume = Mathf.Lerp(0f, targetVolumeIn, t);
+
+            yield return null;
+        }
+
+        // Clean up the old track
+        if (outgoing != null)
+        {
+            outgoing.source.Stop();
+            outgoing.source.volume = outgoing.volume * musicVolume; // restore for reuse
+        }
+
+        // Swap the new source into the Sound object and clean up
+        Destroy(nextMusic.source);
+        nextMusic.source = nextSource;
+        currentMusic = nextMusic;
     }
 
 
