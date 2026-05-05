@@ -3297,8 +3297,10 @@ MonoBehaviour:
   visionRange: 20
   xFOV: 90
   yFOV: 0
-  timeToEndSearch: 3.5
+  timeToEndSearch: 5
   endingSearch: 0
+  alertRadius: 5
+  alerted: 0
 --- !u!1 &9066436628666526140
 GameObject:
   m_ObjectHideFlags: 0

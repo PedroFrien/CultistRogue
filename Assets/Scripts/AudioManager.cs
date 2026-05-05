@@ -47,6 +47,8 @@ public class AudioManager : MonoBehaviour
 
     [SerializeField] private LayerMask environmentLayer;
 
+    [SerializeField] private String startingMusic;
+
     void Awake()
     {
         //if (instance == null)
@@ -75,7 +77,7 @@ public class AudioManager : MonoBehaviour
             m.source.loop = true;
         }
 
-        PlayBackgroundMusic("Ambient");
+        PlayBackgroundMusic(startingMusic);
     }
 
     // Update effects volume for all sound effects
@@ -297,7 +299,8 @@ public class AudioManager : MonoBehaviour
 
             if (enemy != null)
             {
-                enemy.Investigate(worldPos);
+                enemy.lastSeenPos = worldPos;
+                enemy.StartChase();
             }
         }
     }

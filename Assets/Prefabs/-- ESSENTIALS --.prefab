@@ -2748,11 +2748,30 @@ MonoBehaviour:
     pitch: 1
     speed: 1
     source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: b1d90d462f6fca34fbecc6f858ca6b51, type: 3}
+    name: Menu
+    volume: 0.25
+    pitch: 1
+    speed: 1
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: 4ba6f8a1a5e0d5f4f9f2ef9bdc3cac79, type: 3}
+    name: Win
+    volume: 0.25
+    pitch: 1
+    speed: 1
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: b48b06feadfebb442be7155678f74fda, type: 3}
+    name: Lose
+    volume: 0.25
+    pitch: 1
+    speed: 1
+    source: {fileID: 0}
   effectsSlider: {fileID: 0}
   musicSlider: {fileID: 0}
   environmentLayer:
     serializedVersion: 2
     m_Bits: 8
+  startingMusic: Ambient
 --- !u!1 &3075662505226072570
 GameObject:
   m_ObjectHideFlags: 0

@@ -81,6 +81,8 @@ public abstract class BaseEnemy : BaseCharacter
     public float timeToEndSearch;
     public bool endingSearch;
     public Coroutine EndSearchCor;
+    public float alertRadius;
+    public bool alerted;
 
 
 
@@ -153,6 +155,11 @@ public abstract class BaseEnemy : BaseCharacter
 
             questionMark.SetActive(false);
 
+            if (!shooting)
+            {
+                agent.SetDestination(lastSeenPos);
+            }
+
             if (Vector3.Distance(transform.position, player.transform.position) <= range && !shooting && playerVisible)
             {
                 shootingCoroutine = StartCoroutine(Shoot());
@@ -183,6 +190,8 @@ public abstract class BaseEnemy : BaseCharacter
                     EndSearchCor = StartCoroutine(EndSearch());
                 }
             }
+
+            AlertAllies(alertRadius);
         }
         else
         {
@@ -199,6 +208,25 @@ public abstract class BaseEnemy : BaseCharacter
         }
 
         questionMark.SetActive(Investigating);
+
+
+
+    }
+
+    public void AlertAllies(float radius)
+    {
+        Collider[] colliders = Physics.OverlapSphere(transform.position, radius);
+        
+        foreach (Collider collider in colliders)
+        {
+            BaseEnemy nearbyEnemy = collider.GetComponent<BaseEnemy>();
+            if (nearbyEnemy != null && !nearbyEnemy.alerted)
+            {
+                nearbyEnemy.StartChase();
+                nearbyEnemy.lastSeenPos = lastSeenPos;
+            }
+        }
+
 
     }
 
@@ -228,6 +256,8 @@ public abstract class BaseEnemy : BaseCharacter
     public void StartChase()
     {
         if (Chasing) return;
+        Chasing = true;
+        alerted = true;
 
         if (movementCoroutine != null) StopCoroutine(movementCoroutine);
         if (shootingCoroutine != null) StopCoroutine(shootingCoroutine);
@@ -240,7 +270,7 @@ public abstract class BaseEnemy : BaseCharacter
         
 
         Investigating = false;
-
+        Patrolling = false;
         Chasing = true;
 
     }
@@ -304,7 +334,9 @@ public abstract class BaseEnemy : BaseCharacter
         Chasing = false;
 
         yield return new WaitForSeconds(1);
-    
+
+        Chasing = false;
+
         Patrolling = true;
 
         agent.speed = normalSpeed;

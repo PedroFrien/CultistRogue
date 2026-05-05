@@ -22991,7 +22991,7 @@ PrefabInstance:
       objectReference: {fileID: 1381408601}
     - target: {fileID: 718584012737510018, guid: 0121f65b66cf6064e9090b91c1e9f5f9, type: 3}
       propertyPath: m_VersionIndex
-      value: 5649
+      value: 5655
       objectReference: {fileID: 0}
     - target: {fileID: 4027219444909127172, guid: 0121f65b66cf6064e9090b91c1e9f5f9, type: 3}
       propertyPath: m_Mesh
@@ -41655,6 +41655,10 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 400216567}
+    - target: {fileID: 4994424051583802713, guid: 6033248100052f943a4b1fef22c7e54d, type: 3}
+      propertyPath: alertRadius
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 4994424051583802713, guid: 6033248100052f943a4b1fef22c7e54d, type: 3}
       propertyPath: patrolPoints.Array.size
       value: 0
@@ -97974,7 +97978,7 @@ PrefabInstance:
       objectReference: {fileID: 260802974}
     - target: {fileID: 718584012737510018, guid: 0121f65b66cf6064e9090b91c1e9f5f9, type: 3}
       propertyPath: m_VersionIndex
-      value: 5643
+      value: 5649
       objectReference: {fileID: 0}
     - target: {fileID: 4027219444909127172, guid: 0121f65b66cf6064e9090b91c1e9f5f9, type: 3}
       propertyPath: m_Mesh
@@ -128415,7 +128419,7 @@ PrefabInstance:
       objectReference: {fileID: 2099519583}
     - target: {fileID: 718584012737510018, guid: 0121f65b66cf6064e9090b91c1e9f5f9, type: 3}
       propertyPath: m_VersionIndex
-      value: 5682
+      value: 5688
       objectReference: {fileID: 0}
     - target: {fileID: 4027219444909127172, guid: 0121f65b66cf6064e9090b91c1e9f5f9, type: 3}
       propertyPath: m_Mesh
@@ -165910,6 +165914,8 @@ MonoBehaviour:
   yFOV: 0
   timeToEndSearch: 0
   endingSearch: 0
+  alertRadius: 0
+  alerted: 0
 --- !u!1 &3107137497565591725
 GameObject:
   m_ObjectHideFlags: 0
