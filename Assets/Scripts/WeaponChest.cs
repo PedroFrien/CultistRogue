@@ -23,6 +23,9 @@ public class WeaponChest : MonoBehaviour, IInteractable
 
     private void Open()
     {
+        FindFirstObjectByType<AudioManager>().PlaySound("OpenChest", transform.position, gameObject);
+
+
         GetComponent<BoxCollider>().enabled = false;
 
         int randomIndex = Random.Range(0, possibleWeapons.Count);

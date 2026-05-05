@@ -375,7 +375,7 @@ public abstract class BaseEnemy : BaseCharacter
 
     public void EnemyChasingCheck()
     {
-        Debug.Log("Enemy Chasing Check called");
+        Chasing = false;
         BaseEnemy[] enemies = FindObjectsByType<BaseEnemy>(sortMode: FindObjectsSortMode.None);
         bool noEnemiesChasing = true;
         foreach (BaseEnemy enemy in enemies)
@@ -531,6 +531,9 @@ public abstract class BaseEnemy : BaseCharacter
 
     public IEnumerator DelayedDeath()
     {
+        Chasing = false;
+        audioManager.PlaySound("EnemyDie", transform.position, gameObject);
+
         dead = true;
         animator.enabled = false;
         
@@ -546,6 +549,8 @@ public abstract class BaseEnemy : BaseCharacter
 
         yield return new WaitForSeconds(despawnTime);
 
+        Chasing = false;
+        EnemyChasingCheck();
         Die();
 
 

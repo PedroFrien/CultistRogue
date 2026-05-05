@@ -2735,6 +2735,24 @@ MonoBehaviour:
     pitch: 1
     speed: 1
     source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: 30163eadc68f1694e98fd356dccf1759, type: 3}
+    name: EnemyDie
+    volume: 0.35
+    pitch: 1
+    speed: 1
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: e04acdd8f16c6ca46af8d985bda4ebed, type: 3}
+    name: BottleClink
+    volume: 0.35
+    pitch: 1
+    speed: 1
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: 00fd85a0530e82e4b9e4b198b05a8984, type: 3}
+    name: OpenChest
+    volume: 0.35
+    pitch: 1
+    speed: 1
+    source: {fileID: 0}
   music:
   - clip: {fileID: 8300000, guid: a38986e7a9d3b6045aa49155340fcdd3, type: 3}
     name: Ambient

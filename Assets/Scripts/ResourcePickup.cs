@@ -37,6 +37,7 @@ public class ResourcePickup : MonoBehaviour, IInteractable
             pmana.GainMana(mana);
         }
 
+        FindFirstObjectByType<AudioManager>().PlaySound("BottleClink", transform.position, gameObject);
         Destroy(gameObject);
 
 
