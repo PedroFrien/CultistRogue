@@ -88,6 +88,8 @@ public abstract class BaseEnemy : BaseCharacter
     public GameObject[] joints;
     public float despawnTime;
     public bool dead = false;
+    public BoxCollider backstabHitbox;
+  
 
 
 
@@ -144,7 +146,7 @@ public abstract class BaseEnemy : BaseCharacter
             movementCoroutine = StartCoroutine(MoveToPos(manualPos));
         }
 
-        if (agent.speed > 0)
+        if (agent.velocity.magnitude > 0.5)
         {
             animator.SetBool("Moving", true);
         }
@@ -177,7 +179,7 @@ public abstract class BaseEnemy : BaseCharacter
                 shootingCoroutine = StartCoroutine(Shoot());
             }
 
-            if (playerVisible && !shooting)
+            if (playerVisible && !shooting && IsPositionReachable(player.transform.position))
             {
                 if (EndSearchCor != null)
                 {
@@ -189,7 +191,7 @@ public abstract class BaseEnemy : BaseCharacter
                 agent.SetDestination(lastSeenPos);
                 agent.speed = sprintSpeed;
             }
-            else if (endingSearch)
+            else if (endingSearch && IsPositionReachable(player.transform.position))
             {
                 // Player not visible but we're still searching
                 agent.SetDestination(lastSeenPos);
@@ -300,15 +302,26 @@ public abstract class BaseEnemy : BaseCharacter
 
         if (Vector3.Distance(transform.position, currentPatrolPoint) <= 2f)
         {
-            patrolPointIndex++;
+            if (patrolPoints.Length > 1)
+            {
+                patrolPointIndex++;
 
-            if (patrolPointIndex > patrolPoints.Length - 1) patrolPointIndex = 0;
-            currentPatrolPoint = patrolPoints[patrolPointIndex];
+                if (patrolPointIndex > patrolPoints.Length - 1) patrolPointIndex = 0;
+                currentPatrolPoint = patrolPoints[patrolPointIndex];
+            }
+            else
+            {
+                agent.isStopped = true;
+                
+            }
+
+            
         }
 
         Investigating = false;
 
-        movementCoroutine = StartCoroutine(MoveToPos(currentPatrolPoint));
+        if (patrolPoints.Length > 1) movementCoroutine = StartCoroutine(MoveToPos(currentPatrolPoint));
+
     }
 
     public void Investigate(Vector3 pos)
@@ -522,6 +535,9 @@ public abstract class BaseEnemy : BaseCharacter
         animator.enabled = false;
         
         agent.enabled = false;
+        backstabHitbox.enabled = false;
+        GetComponent<Collider>().enabled = false;
+        
 
         //foreach (GameObject joint in joints)
         //{
@@ -536,6 +552,27 @@ public abstract class BaseEnemy : BaseCharacter
 
 
 
+    }
+
+    bool IsPositionReachable(Vector3 position)
+    {
+        NavMeshPath path = new NavMeshPath();
+
+        // Check if position is on NavMesh first
+        NavMeshHit hit;
+        if (!NavMesh.SamplePosition(position, out hit, 2.0f, NavMesh.AllAreas))
+            return false;
+
+        Vector3 validTarget = hit.position;
+
+        // Calculate path to the valid target
+        if (agent.CalculatePath(validTarget, path))
+        {
+            // Check if path is complete and valid
+            return path.status == NavMeshPathStatus.PathComplete;
+        }
+
+        return false;
     }
 
 

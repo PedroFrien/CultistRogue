@@ -1507,7 +1507,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3381300115797674778}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -4049,11 +4049,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 699576511619027187}
+  - component: {fileID: 4994424051583802713}
   - component: {fileID: 3670105569068145220}
   - component: {fileID: 5675580649045008996}
   - component: {fileID: 7236908181170380822}
   - component: {fileID: 3558834674115377805}
-  - component: {fileID: 4994424051583802713}
   m_Layer: 7
   m_Name: Enemy
   m_TagString: Untagged
@@ -4079,6 +4079,67 @@ Transform:
   - {fileID: 4347900860603534053}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!114 &4994424051583802713
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9018027806339081292}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7021b9d265010f4ea104814fa8fb343, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TestEnemy
+  CurrentHealth: 6
+  MaxHealth: 6
+  agent: {fileID: 0}
+  normalSpeed: 4
+  sprintSpeed: 8
+  sightRange: 30
+  Patrolling: 0
+  Investigating: 0
+  Chasing: 0
+  playerInCone: 0
+  uprightRate: 1
+  crouchDetectRate: 0.5
+  timeToDetect: 160
+  detectValue: 0
+  playerDetect:
+    serializedVersion: 2
+    m_Bits: 72
+  exclamationPoint: {fileID: 5849136482507333300}
+  questionMark: {fileID: 8599799122199486258}
+  audioManager: {fileID: 0}
+  patrolPoints: []
+  gizmoRadius: 0.3
+  patrolPointColor: {r: 0, g: 0, b: 1, a: 1}
+  selectedPointColor: {r: 1, g: 0, b: 0, a: 1}
+  showPatrolLines: 1
+  patrolPointIndex: 0
+  currentPatrolPoint: {x: 0, y: 0, z: 0}
+  manualPos: {x: 0, y: 0, z: 0}
+  move: 0
+  lastSeenPos: {x: 0, y: 0, z: 0}
+  bulletTrail: {fileID: 3635723773914996350, guid: e87bf255792893548951b98f50da920f, type: 3}
+  firePoint: {fileID: 6971635217727768931}
+  isRanged: 1
+  range: 10
+  bulletDamage: 50
+  shootDelay: 2
+  betweenShotDelay: 1
+  shooting: 0
+  visionRange: 20
+  xFOV: 90
+  yFOV: 0
+  timeToEndSearch: 5
+  endingSearch: 0
+  alertRadius: 5
+  alerted: 0
+  joints: []
+  despawnTime: 3
+  dead: 0
+  backstabHitbox: {fileID: 3373900725067691705}
 --- !u!33 &3670105569068145220
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -4181,66 +4242,6 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &4994424051583802713
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9018027806339081292}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c7021b9d265010f4ea104814fa8fb343, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::TestEnemy
-  CurrentHealth: 6
-  MaxHealth: 6
-  agent: {fileID: 0}
-  normalSpeed: 4
-  sprintSpeed: 8
-  sightRange: 30
-  Patrolling: 0
-  Investigating: 0
-  Chasing: 0
-  playerInCone: 0
-  uprightRate: 1
-  crouchDetectRate: 0.5
-  timeToDetect: 160
-  detectValue: 0
-  playerDetect:
-    serializedVersion: 2
-    m_Bits: 72
-  exclamationPoint: {fileID: 5849136482507333300}
-  questionMark: {fileID: 8599799122199486258}
-  audioManager: {fileID: 0}
-  patrolPoints: []
-  gizmoRadius: 0.3
-  patrolPointColor: {r: 0, g: 0, b: 1, a: 1}
-  selectedPointColor: {r: 1, g: 0, b: 0, a: 1}
-  showPatrolLines: 1
-  patrolPointIndex: 0
-  currentPatrolPoint: {x: 0, y: 0, z: 0}
-  manualPos: {x: 0, y: 0, z: 0}
-  move: 0
-  lastSeenPos: {x: 0, y: 0, z: 0}
-  bulletTrail: {fileID: 3635723773914996350, guid: e87bf255792893548951b98f50da920f, type: 3}
-  firePoint: {fileID: 6971635217727768931}
-  isRanged: 1
-  range: 10
-  bulletDamage: 50
-  shootDelay: 2
-  betweenShotDelay: 1
-  shooting: 0
-  visionRange: 20
-  xFOV: 90
-  yFOV: 0
-  timeToEndSearch: 5
-  endingSearch: 0
-  alertRadius: 5
-  alerted: 0
-  joints: []
-  despawnTime: 3
-  dead: 0
 --- !u!1 &9066436628666526140
 GameObject:
   m_ObjectHideFlags: 0

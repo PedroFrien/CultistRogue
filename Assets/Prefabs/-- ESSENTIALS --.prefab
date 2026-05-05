@@ -1269,8 +1269,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::FPController
   Acceleration: 100
   WalkSpeed: 2.5
-  SprintSpeed: 6
-  CrouchWalkSpeed: 0.75
+  SprintSpeed: 5
+  CrouchWalkSpeed: 1.5
   CrouchSprintSpeed: 1.5
   environmentLayer:
     serializedVersion: 2
